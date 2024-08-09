@@ -1,0 +1,62 @@
+.background {
+    // TODO: create mixins
+    // TODO: create variables
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-image: url("../../../../assets/img/background_img.webp");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.login-form {
+    background: rgba(
+        12,
+        12,
+        12,
+        0.8
+    ); /* Optional: Adds a semi-transparent background to the form */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Adds a shadow for better visibility */
+    width: 50vw;
+    height: 50vh;
+    color: white;
+
+    input {
+        border: 1px solid #727272;
+        background: rgba(12, 12, 12, 0.8);
+        color: #727272;
+
+        &:hover {
+            cursor: pointer;
+            border: #fff 1px solid;
+        }
+
+        &:focus {
+            outline: none; /* Entfernt den Standardfokus-Stil */
+            border: 1px solid #fff; /* Ändert die Farbe des Fokus-Randes zu Rot */
+            box-shadow: 0 0 16px #fff; /* Optional: Fügt einen Schatten hinzu, um den Fokus hervorzuheben */
+        }
+    }
+
+    .form-check-input {
+        // width: 1.25em;
+        // height: 1.25em;
+        border-radius: 0.25em;
+        border: 1px solid #727272;
+        background-color: rgba(12, 12, 12, 0.8);
+        color: #fff; /* Farbe des Häkchens */
+
+        &:checked::after {
+            content: "\2713"; /* Unicode für das Häkchen-Symbol */
+            display: block;
+            color: white; /* Farbe des Häkchens */
+            font-size: 1em;
+            position: relative;
+            top: -0.3em;
+        }
+    }
+}
