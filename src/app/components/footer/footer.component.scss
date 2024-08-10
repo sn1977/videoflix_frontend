@@ -1,0 +1,12 @@
+@import "../../../styles/mixins.scss";
+
+div {
+  background: rgba(12, 12, 12);
+  height: 150px;
+  @include dFlex($g: 32px);
+
+  a {
+    font-size: 1.5em;
+    text-decoration: none
+  };
+}
