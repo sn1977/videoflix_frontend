@@ -3,7 +3,7 @@
     <div class="background">
         <div class="login-form">
             <h1>Register</h1>
-            <form>
+            <form (ngSubmit)="onSubmit()">
                 <div class="mb-3">
                     <input
                         type="email"
@@ -23,16 +23,20 @@
                         id="exampleInputPassword1"
                         minlength="6"
                         placeholder="Password"
-                        required />
+                        required 
+                        [(ngModel)]="password"
+                        name="password"/>
                 </div>
                 <div class="mb-3">
                     <input
                         type="password"
                         class="form-control"
-                        id="exampleInputPassword1"
+                     
                         minlength="6"
                         placeholder="Confirm Password"
-                        required />
+                        required
+                        [(ngModel)]="confirmPassword"
+                        name="confirmPassword" />
                 </div>
                 <button type="submit" class="btn btn-primary">Sign Up</button>
             </form>
