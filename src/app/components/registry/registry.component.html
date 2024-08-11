@@ -3,7 +3,7 @@
     <div class="background">
         <div class="login-form">
             <h1>Register</h1>
-            <form (ngSubmit)="onSubmit()">
+            <form (ngSubmit)="onSubmit()" #emailForm="ngForm" ngNativeValidate>
                 <div class="mb-3">
                     <input
                         type="email"
@@ -37,8 +37,11 @@
                         required
                         [(ngModel)]="confirmPassword"
                         name="confirmPassword" />
+                        <div *ngIf="!passwordsEqual">
+                          Passwords don't match
+                        </div>
                 </div>
-                <button type="submit" class="btn btn-primary">Sign Up</button>
+                <button type="submit" class="btn btn-primary" [disabled]="!passwordsEqual">Sign Up</button>
             </form>
         </div>
     </div>
