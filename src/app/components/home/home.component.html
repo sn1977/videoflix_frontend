@@ -1,4 +1,4 @@
-<!-- <app-header></app-header>
+<app-header></app-header>
 <div class="background">
     <div class="home-info">
         <h1>Unlimited movies, TV shows, and more</h1>
@@ -22,50 +22,7 @@
                 <button type="submit" class="btn btn-primary">Log In</button>
             </div>
         </form>
-        <div class="mb-3">
-            <input
-                type="email"
-                class="form-control"
-                id="exampleInputEmail1"
-                aria-describedby="emailHelp"
-                pattern="[a-zA-ZO0-9.%+\-]+@[a-zA-Z0-9.\-]+.[a-zA-Z]{2,}"
-                placeholder="Email address"
-                required
-                [(ngModel)]="email"
-                name="email" />
-            <button type="submit" class="btn btn-primary">Log In</button>
-        </div>
-      </form>
-        </div>
     </div>
 </div>
 
-<app-footer></app-footer> -->
-
-<app-header></app-header>
-<div class="background">
-    <div class="home-info">
-        <h1>Unlimited movies, TV shows, and more</h1>
-        <h2>Watch anywhere. Cancel anytime.</h2>
-        <h3>
-            Ready to watch? Enter your email to create or restart your
-            subscription.
-        </h3>
-        <form (ngSubmit)="onSubmit()" #emailForm="ngForm">
-            <div class="mb-3">
-                <input
-                    type="email"
-                    class="form-control"
-                    id="exampleInputEmail1"
-                    aria-describedby="emailHelp"
-                    pattern="[a-zA-Z0-9.%+\-]+@[a-zA-Z0-9.\-]+.[a-zA-Z]{2,}"
-                    placeholder="Email address"
-                    required
-                    [(ngModel)]="email"
-                    name="email" />
-                <button type="submit" class="btn btn-primary">Log In</button>
-            </div>
-        </form>
-    </div>
-</div>
 <app-footer></app-footer>

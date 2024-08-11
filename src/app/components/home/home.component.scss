@@ -36,6 +36,11 @@
             }
         }
 
+        form {
+          width: 100%;
+          @include dFlex();
+        }
+
         .mb-3 {
           @include dFlex($g: 16px);
           width: 80%;

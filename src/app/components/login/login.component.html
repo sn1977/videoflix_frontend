@@ -4,9 +4,6 @@
         <h1>Log In</h1>
         <form>
             <div class="mb-3">
-                <!-- <label for="exampleInputEmail1" class="form-label"
-                    >Email address</label
-                > -->
                 <input
                     type="email"
                     class="form-control"
@@ -14,12 +11,11 @@
                     aria-describedby="emailHelp"
                     pattern="[a-zA-ZO0-9.%+\-]+@[a-zA-Z0-9.\-]+.[a-zA-Z]{2,}"
                     placeholder="Email address"
-                    required />
+                    required
+                    [(ngModel)]="email"
+                    name="email" />
             </div>
             <div class="mb-3">
-                <!-- <label for="exampleInputPassword1" class="form-label"
-                    >Password</label
-                > -->
                 <input
                     type="password"
                     class="form-control"
@@ -46,11 +42,12 @@
             </button>
         </form>
         <div class="login-footer">
-          <a href="#"><p>Forgot password?</p></a>
-          <div>
-            <p>Don't have an account?</p><a href="#"><p>Sign up</p></a>
-          </div>
-      </div>
+            <a href="#"><p>Forgot password?</p></a>
+            <div>
+                <p>Don't have an account?</p>
+                <a href="#"><p>Sign up</p></a>
+            </div>
+        </div>
     </div>
 </div>
 <app-footer></app-footer>
