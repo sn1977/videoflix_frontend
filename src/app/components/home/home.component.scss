@@ -1,0 +1,49 @@
+@import "../../../styles/mixins.scss";
+
+.background {
+    @include dFlex;
+    height: 100vh;
+    background-image: url("../../../assets/img/background_img.webp");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+
+    .home-info {
+        @include dFlex($fd: column);
+        background: rgba(12, 12, 12, 0.8);
+        border-radius: 8px;
+        padding: 24px;
+
+        input {
+            border: 1px solid #727272;
+            background: rgba(12, 12, 12, 0.8);
+            color: #fff;
+
+            &::placeholder {
+                color: #fff;
+            }
+
+            &:hover {
+                cursor: pointer;
+                border: #fff 1px solid;
+            }
+
+            &:focus {
+                outline: none; /* Entfernt den Standardfokus-Stil */
+                border: 1px solid #fff; /* Ändert die Farbe des Fokus-Randes zu Rot */
+                box-shadow: 0 0 16px #fff; /* Optional: Fügt einen Schatten hinzu, um den Fokus hervorzuheben */
+            }
+        }
+
+        .mb-3 {
+          @include dFlex($g: 16px);
+          width: 80%;
+          padding-top: 24px;
+
+          button {
+            width: 20%;
+          }
+    }
+}
+}
