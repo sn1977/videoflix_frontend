@@ -1,0 +1,42 @@
+<app-header></app-header>
+<div class="background">
+    <div class="background">
+        <div class="login-form">
+            <h1>Register</h1>
+            <form>
+                <div class="mb-3">
+                    <input
+                        type="email"
+                        class="form-control"
+                        id="exampleInputEmail1"
+                        aria-describedby="emailHelp"
+                        pattern="[a-zA-ZO0-9.%+\-]+@[a-zA-Z0-9.\-]+.[a-zA-Z]{2,}"
+                        placeholder="Email address"
+                        required
+                        [(ngModel)]="email"
+                        name="email" />
+                </div>
+                <div class="mb-3">
+                    <input
+                        type="password"
+                        class="form-control"
+                        id="exampleInputPassword1"
+                        minlength="6"
+                        placeholder="Password"
+                        required />
+                </div>
+                <div class="mb-3">
+                    <input
+                        type="password"
+                        class="form-control"
+                        id="exampleInputPassword1"
+                        minlength="6"
+                        placeholder="Confirm Password"
+                        required />
+                </div>
+                <button type="submit" class="btn btn-primary">Sign Up</button>
+            </form>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

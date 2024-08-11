@@ -3,9 +3,10 @@
 .header-container {
   position: fixed;
   top: 0;
+  left: 0;
   width: 100%;
   z-index: 1000; /* Ein hoher Wert, um sicherzustellen, dass es über anderen Elementen liegt */
-  background-color: rgba(0, 0, 0, 0.3); /* Optional: Hintergrundfarbe für bessere Sichtbarkeit */
+  // background-color: rgba(0, 0, 0, 0.3); /* Optional: Hintergrundfarbe für bessere Sichtbarkeit */
   padding: 16px 100px;
   @include dFlex($jc: space-between);
 
