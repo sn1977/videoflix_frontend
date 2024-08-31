@@ -12,5 +12,6 @@
     "login": "Log in",
     "forgot": "Forgot password?",
     "noAccount": "Don't have an account?",
-    "register": "Sign up"
+    "register": "Sign up",
+    "confirmPassword.placeholder": "Confirm password"
 }

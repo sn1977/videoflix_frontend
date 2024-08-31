@@ -11,7 +11,7 @@
                         id="exampleInputEmail1"
                         aria-describedby="emailHelp"
                         pattern="[a-zA-ZO0-9.%+\-]+@[a-zA-Z0-9.\-]+.[a-zA-Z]{2,}"
-                        placeholder="Email address"
+                        placeholder="{{ 'email.placeholder' | translate }} "
                         required
                         [(ngModel)]="email"
                         name="email" />
@@ -22,7 +22,7 @@
                         class="form-control"
                         id="exampleInputPassword1"
                         minlength="6"
-                        placeholder="Password"
+                        placeholder="{{'password.placeholder' | translate}}"
                         required 
                         [(ngModel)]="password"
                         name="password"/>
@@ -33,7 +33,7 @@
                         class="form-control"
                      
                         minlength="6"
-                        placeholder="Confirm Password"
+                        placeholder="{{ 'confirmPassword.placeholder' | translate }}"
                         required
                         [(ngModel)]="confirmPassword"
                         name="confirmPassword" />
@@ -41,7 +41,7 @@
                           Passwords don't match
                         </div>
                 </div>
-                <button type="submit" class="btn btn-primary" [disabled]="!passwordsEqual">Sign Up</button>
+                <button type="submit" class="btn btn-primary" [disabled]="!passwordsEqual">{{ "register" | translate }}</button>
             </form>
         </div>
     </div>

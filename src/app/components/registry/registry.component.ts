@@ -4,6 +4,7 @@ import { FooterComponent } from "../footer/footer.component";
 import { FormsModule } from "@angular/forms";
 import { CommonModule } from "@angular/common";
 import { TranslateModule } from "@ngx-translate/core";
+import { LanguageService } from "../../services/language.service";
 
 @Component({
     selector: "app-registry",
@@ -17,6 +18,12 @@ export class RegistryComponent {
     password: string = "";
     confirmPassword: string = "";
     // passwordsEqual: boolean = false;
+    currentLanguage: string;
+
+    constructor(private languageService: LanguageService
+    ) {
+        this.currentLanguage = this.languageService.getCurrentLanguage();
+    }
 
     get passwordsEqual(): boolean {
       return this.password === this.confirmPassword;
