@@ -1,13 +1,23 @@
 <div class="header-container">
-  <img src="/assets/img/logo_transparent.png" alt="Logo Videoflix">
-  <div class="dropdown">
-    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-      Englisch
-    </button>
-    <ul class="dropdown-menu">
-      <li (click)="switchLanguage('en')"><a class="dropdown-item">Englisch</a></li>
-      <li (click)="switchLanguage('de')"><a class="dropdown-item" >Deutsch</a></li>
-    </ul>
-    <button type="button" class="btn btn-primary" (click)="register()">Sign Up</button>
-  </div> 
+    <img src="/assets/img/logo_transparent.png" alt="Logo Videoflix" />
+    <div class="dropdown">
+        <button
+            class="btn btn-secondary dropdown-toggle"
+            type="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false">
+            {{ "language" | translate }}
+        </button>
+        <ul class="dropdown-menu">
+            <li (click)="switchLanguage('en')">
+                <a class="dropdown-item">Englisch</a>
+            </li>
+            <li (click)="switchLanguage('de')">
+                <a class="dropdown-item">Deutsch</a>
+            </li>
+        </ul>
+        <button type="button" class="btn btn-primary" (click)="register()">
+            {{ "signup" | translate }}
+        </button>
+    </div>
 </div>
