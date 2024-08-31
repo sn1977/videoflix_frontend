@@ -13,5 +13,9 @@
     "forgot": "Passwort vergessen?",
     "noAccount": "Noch keinen Account?",
     "register": "Registrieren",
-    "confirmPassword.placeholder": "Passwort bestätigen"
+    "confirmPassword.placeholder": "Passwort bestätigen",
+    "passwordDoesNotMatch": "Passwort stimmt nicht überein",
+    "dataPrivacy": "Datenschutz",
+    "imprint": "Impressum"
+
 }

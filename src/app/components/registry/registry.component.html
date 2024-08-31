@@ -38,7 +38,7 @@
                         [(ngModel)]="confirmPassword"
                         name="confirmPassword" />
                         <div *ngIf="!passwordsEqual">
-                          Passwords don't match
+                          {{ "passwordDoesNotMatch" | translate }}
                         </div>
                 </div>
                 <button type="submit" class="btn btn-primary" [disabled]="!passwordsEqual">{{ "register" | translate }}</button>

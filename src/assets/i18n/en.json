@@ -13,5 +13,8 @@
     "forgot": "Forgot password?",
     "noAccount": "Don't have an account?",
     "register": "Sign up",
-    "confirmPassword.placeholder": "Confirm password"
+    "confirmPassword.placeholder": "Confirm password",
+    "passwordDoesNotMatch": "Passwords do not match",
+    "dataPrivacy": "Data Privacy",
+    "imprint": "Imprint"
 }
