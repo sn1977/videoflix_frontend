@@ -1,7 +1,7 @@
 <app-header></app-header>
 <div class="background">
     <div class="login-form">
-        <h1>Log In</h1>
+        <h1>{{ "login" | translate }}</h1>
         <form>
             <div class="mb-3">
                 <input
@@ -10,7 +10,7 @@
                     id="exampleInputEmail1"
                     aria-describedby="emailHelp"
                     pattern="[a-zA-ZO0-9.%+\-]+@[a-zA-Z0-9.\-]+.[a-zA-Z]{2,}"
-                    placeholder="Email address"
+                    placeholder="{{ 'email.placeholder' | translate }} "
                     required
                     [(ngModel)]="email"
                     name="email" />
@@ -21,7 +21,7 @@
                     class="form-control"
                     id="exampleInputPassword1"
                     minlength="6"
-                    placeholder="Password"
+                    placeholder="{{ 'password.placeholder' | translate }}"
                     required />
             </div>
             <div class="mb-3 form-check">
@@ -38,14 +38,14 @@
                 type="submit"
                 class="btn btn-primary"
                 [disabled]="!isCheckboxChecked">
-                Log In
+                {{ "email.button" | translate }}
             </button>
         </form>
         <div class="login-footer">
-            <a href="#"><p>Forgot password?</p></a>
+            <a href="#"><p>{{ "forgot" | translate }}</p></a>
             <div>
-                <p>Don't have an account?</p>
-                <a href="register/"><p>Sign up</p></a>
+                <p>{{ "noAccount" | translate }}</p>
+                <a href="register/"><p>{{ "register" | translate }}</p></a>
             </div>
         </div>
     </div>

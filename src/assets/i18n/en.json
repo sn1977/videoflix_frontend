@@ -7,5 +7,10 @@
         "h3": "Ready to watch? Enter your email to create or restart your subscription."
     },
     "email.placeholder": "Email address",
-    "email.button": "Log in"
+    "password.placeholder": "Password",
+    "email.button": "Log in",
+    "login": "Log in",
+    "forgot": "Forgot password?",
+    "noAccount": "Don't have an account?",
+    "register": "Sign up"
 }

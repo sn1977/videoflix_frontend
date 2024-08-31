@@ -1,11 +1,16 @@
 {
     "language": "Deutsch",
-    "signup": "Anmeldung",
+    "signup": "Registrieren",
     "home-info": {
         "h1": "Unbegrenzte Anzahl an Filmen und Fernsehsendungen",
         "h2": "Überall ansehen. Jederzeit kündbar.",
         "h3": "Bereit zum Zuschauen? Geben Sie Ihre E-Mail-Adresse ein, um Ihr Abonnement zu erstellen oder neu zu starten."
     },
     "email.placeholder": "E-Mail-Adresse",
-    "email.button": "Anmelden"
+    "password.placeholder": "Passwort",
+    "email.button": "Anmelden",
+    "login": "Anmelden",
+    "forgot": "Passwort vergessen?",
+    "noAccount": "Noch keinen Account?",
+    "register": "Registrieren"
 }
