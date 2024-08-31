@@ -1,12 +1,9 @@
 <app-header></app-header>
 <div class="background">
     <div class="home-info">
-        <h1>Unlimited movies, TV shows, and more</h1>
-        <h2>Watch anywhere. Cancel anytime.</h2>
-        <h3>
-            Ready to watch? Enter your email to create or restart your
-            subscription.
-        </h3>
+        <h1>{{ "home-info.h1" | translate }}</h1>
+        <h2>{{ "home-info.h2" | translate }}</h2>
+        <h3>{{ "home-info.h3" | translate }}</h3>
         <form (ngSubmit)="onSubmit()" #emailForm="ngForm" ngNativeValidate>
             <div class="mb-3">
                 <input

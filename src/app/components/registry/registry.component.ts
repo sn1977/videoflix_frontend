@@ -3,11 +3,12 @@ import { HeaderComponent } from "../header/header.component";
 import { FooterComponent } from "../footer/footer.component";
 import { FormsModule } from "@angular/forms";
 import { CommonModule } from "@angular/common";
+import { TranslateModule } from "@ngx-translate/core";
 
 @Component({
     selector: "app-registry",
     standalone: true,
-    imports: [HeaderComponent, FooterComponent, FormsModule, CommonModule],
+    imports: [HeaderComponent, FooterComponent, FormsModule, CommonModule, TranslateModule],
     templateUrl: "./registry.component.html",
     styleUrl: "./registry.component.scss",
 })
