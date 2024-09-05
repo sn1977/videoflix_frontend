@@ -2,7 +2,7 @@
 <div class="background">
     <div class="login-form">
         <h1>{{ "login" | translate }}</h1>
-        <form>
+        <form (ngSubmit)="login()">
             <div class="mb-3">
                 <input
                     type="email"
@@ -22,7 +22,9 @@
                     id="exampleInputPassword1"
                     minlength="6"
                     placeholder="{{ 'password.placeholder' | translate }}"
-                    required />
+                    required
+                    [(ngModel)]="password"
+                    name="password" />
             </div>
             <div class="mb-3 form-check">
                 <input

@@ -14,16 +14,18 @@ import { LanguageService } from "../../services/language.service";
     styleUrl: "./login.component.scss",
 })
 export class LoginComponent {
-     isCheckboxChecked = false;
-     currentLanguage: string;
-
-     toggleSubmitButton(event: Event) {
-       this.isCheckboxChecked = (event.target as HTMLInputElement).checked;
-     }
-
+    isCheckboxChecked = false;
+    currentLanguage: string;
     email: string = "";
+    password: string = "";
 
-    constructor(private route: ActivatedRoute, private languageService: LanguageService
+    toggleSubmitButton(event: Event) {
+        this.isCheckboxChecked = (event.target as HTMLInputElement).checked;
+    }
+
+    constructor(
+        private route: ActivatedRoute,
+        private languageService: LanguageService
     ) {
         this.currentLanguage = this.languageService.getCurrentLanguage();
     }
@@ -32,5 +34,10 @@ export class LoginComponent {
         this.route.queryParams.subscribe((params) => {
             this.email = params["email"] || "";
         });
+    }
+
+    login() {
+        console.log("Login button clicked");
+        // Add your login logic here
     }
 }
