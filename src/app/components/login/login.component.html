@@ -4,7 +4,7 @@
         <h1>{{ "login" | translate }}</h1>
         <form (ngSubmit)="login()">
             <div class="mb-3">
-                <input
+                <!-- <input
                     type="email"
                     class="form-control"
                     id="exampleInputEmail1"
@@ -13,7 +13,17 @@
                     placeholder="{{ 'email.placeholder' | translate }} "
                     required
                     [(ngModel)]="email"
-                    name="email" />
+                    name="email" /> -->
+                    <input
+                    type="text"
+                    class="form-control"
+                    id="exampleInputEmail1"
+                    aria-describedby="emailHelp"
+                    
+                    placeholder="{{ 'email.placeholder' | translate }} "
+                    required
+                    [(ngModel)]="username"
+                    name="username" />
             </div>
             <div class="mb-3">
                 <input

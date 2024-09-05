@@ -16,8 +16,9 @@ import { LanguageService } from "../../services/language.service";
 export class LoginComponent {
     isCheckboxChecked = false;
     currentLanguage: string;
-    email: string = "";
+    // email: string = "";
     password: string = "";
+    username: string = "";
 
     toggleSubmitButton(event: Event) {
         this.isCheckboxChecked = (event.target as HTMLInputElement).checked;
@@ -32,12 +33,38 @@ export class LoginComponent {
 
     ngOnInit(): void {
         this.route.queryParams.subscribe((params) => {
-            this.email = params["email"] || "";
+            // this.email = params["email"] || "";
+            this.username = params["username"] || "";
         });
     }
 
-    login() {
+    async login() {
         console.log("Login button clicked");
         // Add your login logic here
+        const myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+
+        const raw = JSON.stringify({
+            username: this.username,
+            password: this.password,
+        });
+
+        const requestOptions: RequestInit = {
+            method: "POST",
+            headers: myHeaders,
+            body: raw,
+            redirect: "follow",
+        };
+        try {
+            let resp = await fetch(
+                "http://127.0.0.1:8000/login/",
+                requestOptions
+            );
+            let json = await resp.json();
+            localStorage.setItem("token", json.token);
+            //TODO - redirect 
+        } catch (error) {
+            console.error("Error:", error);
+        }
     }
 }
