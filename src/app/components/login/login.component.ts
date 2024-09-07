@@ -6,6 +6,7 @@ import { FormsModule } from "@angular/forms";
 import { TranslateModule } from "@ngx-translate/core";
 import { LanguageService } from "../../services/language.service";
 import { AuthService } from "../../services/auth.service";
+import { Router } from "@angular/router";
 
 @Component({
     selector: "app-login",
@@ -28,7 +29,8 @@ export class LoginComponent {
     constructor(
         private route: ActivatedRoute,
         private languageService: LanguageService,
-        private authService: AuthService
+        private authService: AuthService,
+        private router: Router
     ) {
         this.currentLanguage = this.languageService.getCurrentLanguage();
     }
@@ -48,6 +50,7 @@ export class LoginComponent {
             );
             console.log("Response:", resp);
             //TODO - redirect
+            this.router.navigate(["/video_selection"]);
         } catch (error) {
             console.error("Error:", error);
         }
