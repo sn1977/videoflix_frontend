@@ -5,10 +5,7 @@ import { ActivatedRoute } from "@angular/router";
 import { FormsModule } from "@angular/forms";
 import { TranslateModule } from "@ngx-translate/core";
 import { LanguageService } from "../../services/language.service";
-import { environment } from "../../../environments/environment";
-import { HttpClient } from "@angular/common/http";
-import { lastValueFrom } from "rxjs";
-import { log } from "console";
+import { AuthService } from "../../services/auth.service";
 
 @Component({
     selector: "app-login",
@@ -31,7 +28,7 @@ export class LoginComponent {
     constructor(
         private route: ActivatedRoute,
         private languageService: LanguageService,
-        private http: HttpClient
+        private authService: AuthService
     ) {
         this.currentLanguage = this.languageService.getCurrentLanguage();
     }
@@ -44,23 +41,15 @@ export class LoginComponent {
     }
 
     async login() {
-        
         try {
-            let resp = await this.loginWithUsernameAndPassword(this.username, this.password);
+            let resp = await this.authService.loginWithUsernameAndPassword(
+                this.username,
+                this.password
+            );
             console.log("Response:", resp);
             //TODO - redirect
         } catch (error) {
             console.error("Error:", error);
         }
-    }
-
-    loginWithUsernameAndPassword(username: string, password: string) {
-      // const url = `${environment.apiUrl}/login?username=${username}&password=${password}`;
-      const url = environment.apiUrl + "/login/";
-      const body = {
-        username: this.username,
-        password: this.password,
-      };
-      return lastValueFrom(this.http.post(url, body));
     }
 }
