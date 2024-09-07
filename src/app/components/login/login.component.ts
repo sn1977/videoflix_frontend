@@ -5,6 +5,10 @@ import { ActivatedRoute } from "@angular/router";
 import { FormsModule } from "@angular/forms";
 import { TranslateModule } from "@ngx-translate/core";
 import { LanguageService } from "../../services/language.service";
+import { environment } from "../../../environments/environment";
+import { HttpClient } from "@angular/common/http";
+import { lastValueFrom } from "rxjs";
+import { log } from "console";
 
 @Component({
     selector: "app-login",
@@ -26,7 +30,8 @@ export class LoginComponent {
 
     constructor(
         private route: ActivatedRoute,
-        private languageService: LanguageService
+        private languageService: LanguageService,
+        private http: HttpClient
     ) {
         this.currentLanguage = this.languageService.getCurrentLanguage();
     }
@@ -39,32 +44,23 @@ export class LoginComponent {
     }
 
     async login() {
-        console.log("Login button clicked");
-        // Add your login logic here
-        const myHeaders = new Headers();
-        myHeaders.append("Content-Type", "application/json");
-
-        const raw = JSON.stringify({
-            username: this.username,
-            password: this.password,
-        });
-
-        const requestOptions: RequestInit = {
-            method: "POST",
-            headers: myHeaders,
-            body: raw,
-            redirect: "follow",
-        };
+        
         try {
-            let resp = await fetch(
-                "http://127.0.0.1:8000/login/",
-                requestOptions
-            );
-            let json = await resp.json();
-            localStorage.setItem("token", json.token);
-            //TODO - redirect 
+            let resp = await this.loginWithUsernameAndPassword(this.username, this.password);
+            console.log("Response:", resp);
+            //TODO - redirect
         } catch (error) {
             console.error("Error:", error);
         }
+    }
+
+    loginWithUsernameAndPassword(username: string, password: string) {
+      // const url = `${environment.apiUrl}/login?username=${username}&password=${password}`;
+      const url = environment.apiUrl + "/login/";
+      const body = {
+        username: this.username,
+        password: this.password,
+      };
+      return lastValueFrom(this.http.post(url, body));
     }
 }
