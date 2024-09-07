@@ -2,32 +2,31 @@ import { Component } from "@angular/core";
 import { HeaderComponent } from "../header/header.component";
 import { LanguageService } from "../../services/language.service";
 import { AuthService } from "../../services/auth.service";
-import { environment } from "../../../environments/environment";
-import { lastValueFrom } from "rxjs";
-import { HttpClient } from "@angular/common/http"; // Import the HttpClient module
+import { VideoService } from "../../services/video.service";
+import { Video } from "../../models/video-model";
+import { CommonModule } from '@angular/common';
 
 @Component({
     selector: "app-video-selection",
     standalone: true,
-    imports: [HeaderComponent],
+    imports: [HeaderComponent, CommonModule],
     templateUrl: "./video-selection.component.html",
     styleUrl: "./video-selection.component.scss",
 })
 export class VideoSelectionComponent {
-    videos: any[] = [];
+    allVideos: Video[] = [];
     constructor(
         private languageService: LanguageService,
         private authService: AuthService,
-        private http: HttpClient // Inject the HttpClient module
+        public videoService: VideoService
     ) {}
 
     async ngOnInit() {
-      this.videos = await this.loadVideos();
-      console.log("Videos:", this.videos);
+        this.loadVideos();
     }
 
-    loadVideos(): Promise<any[]> {
-      const url = environment.apiUrl + "/video_selection/";
-      return lastValueFrom(this.http.get<any[]>(url)); // Specify the type of the response as any[]
+    async loadVideos() {
+        this.allVideos = await this.videoService.getVideos() as Video[];
+        console.log("All Videos:", this.allVideos);
     }
 }

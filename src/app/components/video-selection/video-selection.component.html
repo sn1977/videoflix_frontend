@@ -1,2 +1,14 @@
 <app-header></app-header>
-<p>video-selection works!</p>
+<div *ngIf="allVideos.length > 0; else noVideos">
+  <div *ngFor="let video of allVideos" class="video-item">
+    <!-- <img [src]="video.id" alt="{{ video.title }}" class="video-thumbnail"> -->
+    <h3>{{ video.title }}</h3>
+    <p>{{ video.id }}</p>
+    <p>{{ video.description }}</p>
+    <p>{{ video.created_at }}</p>
+    <p>{{ video.video_file }}</p>
+  </div>
+</div>
+<ng-template #noVideos>
+  <p>No videos available.</p>
+</ng-template>
