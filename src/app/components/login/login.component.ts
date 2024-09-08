@@ -44,11 +44,12 @@ export class LoginComponent {
 
     async login() {
         try {
-            let resp = await this.authService.loginWithUsernameAndPassword(
+            let resp: any = await this.authService.loginWithUsernameAndPassword(
                 this.username,
                 this.password
             );
             console.log("Response:", resp);
+            localStorage.setItem("token", resp.token);
             //TODO - redirect
             this.router.navigate(["/video_selection"]);
         } catch (error) {

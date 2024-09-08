@@ -4,17 +4,19 @@ import { LanguageService } from "../../services/language.service";
 import { AuthService } from "../../services/auth.service";
 import { VideoService } from "../../services/video.service";
 import { Video } from "../../models/video-model";
-import { CommonModule } from '@angular/common';
+import { CommonModule } from "@angular/common";
+import { FooterComponent } from "../footer/footer.component";
 
 @Component({
     selector: "app-video-selection",
     standalone: true,
-    imports: [HeaderComponent, CommonModule],
+    imports: [HeaderComponent, CommonModule, FooterComponent],
     templateUrl: "./video-selection.component.html",
     styleUrl: "./video-selection.component.scss",
 })
 export class VideoSelectionComponent {
     allVideos: Video[] = [];
+    error = "";
     constructor(
         private languageService: LanguageService,
         private authService: AuthService,
@@ -22,11 +24,16 @@ export class VideoSelectionComponent {
     ) {}
 
     async ngOnInit() {
-        this.loadVideos();
+        await this.loadVideos();
     }
 
     async loadVideos() {
-        this.allVideos = await this.videoService.getVideos() as Video[];
-        console.log("All Videos:", this.allVideos);
+        try {
+            this.allVideos = (await this.videoService.getVideos()) as Video[];
+            console.log("All Videos:", this.allVideos);
+        } catch (error) {
+            console.error("Error:", error);
+            this.error = "Error loading videos";
+        }
     }
 }

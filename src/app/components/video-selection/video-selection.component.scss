@@ -1,0 +1,11 @@
+@import "../../../styles/mixins.scss";
+
+.background {
+    @include dFlex;
+    height: 100vh;
+    // background-image: url("../../../assets/img/background_img.webp");
+    // background-repeat: no-repeat;
+    // background-size: cover;
+    background-position: center;
+    background-color: rgba(0, 0, 0, 0.3);
+}
