@@ -48,8 +48,9 @@ export class LoginComponent {
                 this.username,
                 this.password
             );
-            console.log("Response:", resp);
             localStorage.setItem("token", resp.token);
+            console.log("Response:", resp);
+            console.log("Token gespeichert:", localStorage.getItem("token")); 
             //TODO - redirect
             this.router.navigate(["/video_selection"]);
         } catch (error) {
