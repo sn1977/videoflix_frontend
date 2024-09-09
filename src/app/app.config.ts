@@ -11,7 +11,7 @@ import {
     provideHttpClient,
     HTTP_INTERCEPTORS,
     HttpClient,
-} from "@angular/common/http"; // Verwenden Sie provideHttpClient statt HttpClientModule
+} from "@angular/common/http"; 
 import {
     TranslateLoader,
     TranslateService,
