@@ -7,11 +7,12 @@ import {
 } from "@angular/core";
 import { provideRouter } from "@angular/router";
 import { provideClientHydration } from "@angular/platform-browser";
+import { AuthInterceptorService } from "./services/auth-interceptor.service";
 import {
     provideHttpClient,
     HTTP_INTERCEPTORS,
     HttpClient,
-} from "@angular/common/http"; 
+} from "@angular/common/http";
 import {
     TranslateLoader,
     TranslateService,
@@ -24,7 +25,6 @@ import { TranslateHttpLoader } from "@ngx-translate/http-loader";
 import * as Sentry from "@sentry/angular";
 
 import { routes } from "./app.routes";
-import { AuthInterceptorService } from "./services/auth-interceptor.service";
 
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     return new TranslateHttpLoader(http, "/assets/i18n/", ".json");
@@ -32,12 +32,12 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
 
 export const appConfig: ApplicationConfig = {
     providers: [
-        provideHttpClient(),
         {
             provide: HTTP_INTERCEPTORS,
             useClass: AuthInterceptorService,
             multi: true,
         },
+        provideHttpClient(),
         provideZoneChangeDetection({ eventCoalescing: true }),
         provideRouter(routes),
         provideClientHydration(),

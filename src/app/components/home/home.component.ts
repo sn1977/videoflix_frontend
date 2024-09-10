@@ -29,7 +29,7 @@ export class HomeComponent {
     // }
 
     onSubmit() {
-        this.router.navigate(["/login"], {
+        this.router.navigate(["/login/"], {
             queryParams: { email: this.email },
         });
     }

@@ -52,9 +52,10 @@ export class LoginComponent {
             console.log("Response:", resp);
             console.log("Token gespeichert:", localStorage.getItem("token")); 
             //TODO - redirect
-            this.router.navigate(["/video_selection"]);
+            this.router.navigate(["/video_selection/"]);
         } catch (error) {
             console.error("Error:", error);
+            alert("Login failed");
         }
     }
 }
