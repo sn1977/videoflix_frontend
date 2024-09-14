@@ -14,6 +14,7 @@ import { LanguageService } from "../../services/language.service";
     styleUrl: "./registry.component.scss",
 })
 export class RegistryComponent {
+    username: string = "";
     email: string = "";
     password: string = "";
     confirmPassword: string = "";

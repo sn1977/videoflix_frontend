@@ -6,6 +6,7 @@
         "h2": "Watch anywhere. Cancel anytime.",
         "h3": "Ready to watch? Enter your email to create or restart your subscription."
     },
+    "username.placeholder": "Username",
     "email.placeholder": "Email address",
     "password.placeholder": "Password",
     "email.button": "Log in",
