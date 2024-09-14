@@ -44,30 +44,33 @@ export class AuthInterceptorService implements HttpInterceptor {
     //     }
     // }
 
-    intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-      const token = localStorage.getItem("token");
-      console.log("Token im Interceptor gefunden:", token);  // Debugging
-      
-      if (token) {
-          const clonedReq = req.clone({
-              setHeaders: {
-                  Authorization: `Token ${token}`  
-              }
-          });
-          console.log("Request mit Token:", clonedReq);  // Debugging
-  
-          return next.handle(clonedReq).pipe(
-              catchError((err) => {
-                  if (err.status === 401) {
-                      console.error("Unauthorized: ", err);
-                      this.router.navigateByUrl("/login");
-                  }
-                  return throwError(() => err);
-              })
-          );
-      } else {
-          console.log("Kein Token im Interceptor gefunden");
-          return next.handle(req);
-      }
-  }
+    intercept(
+        req: HttpRequest<any>,
+        next: HttpHandler
+    ): Observable<HttpEvent<any>> {
+        const token = localStorage.getItem("token");
+        console.log("Token im Interceptor gefunden:", token); // Debugging
+
+        if (token) {
+            const clonedReq = req.clone({
+                setHeaders: {
+                    Authorization: `Token ${token}`,
+                },
+            });
+            console.log("Request mit Token:", clonedReq); // Debugging
+
+            return next.handle(clonedReq).pipe(
+                catchError((err) => {
+                    if (err.status === 401) {
+                        console.error("Unauthorized: ", err);
+                        this.router.navigateByUrl("/login");
+                    }
+                    return throwError(() => err);
+                })
+            );
+        } else {
+            console.log("Kein Token im Interceptor gefunden");
+            return next.handle(req);
+        }
+    }
 }
