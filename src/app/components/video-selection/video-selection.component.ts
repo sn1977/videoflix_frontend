@@ -27,13 +27,31 @@ export class VideoSelectionComponent {
         await this.loadVideos();
     }
 
+    // async loadVideos() {
+    //     try {
+    //         this.allVideos = (await this.videoService.getVideos()) as Video[];
+    //         console.log("All Videos:", this.allVideos);
+    //     } catch (error) {
+    //         console.error("Error:", error);
+    //         this.error = "Error loading videos";
+    //     }
+    // }
+
     async loadVideos() {
-        try {
-            this.allVideos = (await this.videoService.getVideos()) as Video[];
-            console.log("All Videos:", this.allVideos);
-        } catch (error) {
-            console.error("Error:", error);
-            this.error = "Error loading videos";
-        }
-    }
+      try {
+          this.videoService.getVideos().subscribe({
+              next: (videos: Video[]) => {
+                  this.allVideos = videos;
+                  console.log("All Videos:", this.allVideos);
+              },
+              error: (error) => {
+                  console.error("Error:", error);
+                  this.error = "Error loading videos";
+              }
+          });
+      } catch (error) {
+          console.error("Error:", error);
+          this.error = "Error loading videos";
+      }
+  }
 }
