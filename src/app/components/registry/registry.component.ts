@@ -22,6 +22,8 @@ import { Router } from "@angular/router";
     styleUrl: "./registry.component.scss",
 })
 export class RegistryComponent {
+    firstname: string = "";
+    lastname: string = "";
     username: string = "";
     email: string = "";
     password: string = "";
@@ -53,7 +55,7 @@ export class RegistryComponent {
                 this.email,
                 this.password
             );
-            console.log("Response:", resp);
+            console.log("Response!!!!!:", resp);
             alert("Registration successful");
             this.router.navigate(["/login/"]);
         } catch (error) {

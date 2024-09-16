@@ -8,6 +8,27 @@
                 <input
                     type="text"
                     class="form-control"
+                    id="exampleInputFirstName"
+                    aria-describedby="emailHelp"
+                    placeholder="{{'firstname.placeholder' | translate}}"
+                    required
+                    [(ngModel)]="firstname"
+                    name="firstname" />
+
+                    <input
+                    type="text"
+                    class="form-control"
+                    id="exampleInputLastName"
+                    aria-describedby="emailHelp"
+                    placeholder="{{'lastname.placeholder' | translate}}"
+                    required
+                    [(ngModel)]="lastname"
+                    name="lastname" />
+            </div>
+              <div class="mb-3">
+                <input
+                    type="text"
+                    class="form-control"
                     id="exampleInputUsername1"
                     aria-describedby="emailHelp"
                     placeholder="{{ 'username.placeholder' | translate }} "

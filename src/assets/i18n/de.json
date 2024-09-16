@@ -6,6 +6,8 @@
         "h2": "Überall ansehen. Jederzeit kündbar.",
         "h3": "Bereit zum Zuschauen? Geben Sie Ihre E-Mail-Adresse ein, um Ihr Abonnement zu erstellen oder neu zu starten."
     },
+    "firstname.placeholder": "Vorname",
+    "lastname.placeholder": "Nachname",
     "username.placeholder": "Benutzername",
     "email.placeholder": "E-Mail-Adresse",
     "password.placeholder": "Passwort",
