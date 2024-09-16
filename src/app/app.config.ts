@@ -12,6 +12,7 @@ import {
     provideHttpClient,
     HTTP_INTERCEPTORS,
     HttpClient,
+    withFetch,
 } from "@angular/common/http";
 import {
     TranslateLoader,
@@ -37,7 +38,7 @@ export const appConfig: ApplicationConfig = {
             useClass: AuthInterceptorService,
             multi: true,
         },
-        provideHttpClient(),
+        provideHttpClient(withFetch()),
         provideZoneChangeDetection({ eventCoalescing: true }),
         provideRouter(routes),
         provideClientHydration(),
