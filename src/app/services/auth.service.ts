@@ -37,4 +37,9 @@ export class AuthService {
         // return lastValueFrom(this.http.post(url, body));
         return lastValueFrom(this.http.post(url, body, { withCredentials: true }));
     }
+
+    public activateAccount(uidb64: string, token: string) {
+      const url = `${environment.apiUrl}/activate/${uidb64}/${token}/`;
+      return this.http.get(url);
+    }
 }
