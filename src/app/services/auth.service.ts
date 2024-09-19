@@ -19,13 +19,22 @@ export class AuthService {
         return lastValueFrom(this.http.post(url, body));
     }
 
-    public register(username: string, email: string, password: string) {
+    public register(
+        firstname: string,
+        lastname: string,
+        username: string,
+        email: string,
+        password: string
+    ) {
         const url = environment.apiUrl + "/register/";
         const body = {
+            first_name: firstname,
+            last_name: lastname,
             username: username,
             email: email,
             password: password,
         };
-        return lastValueFrom(this.http.post(url, body));
+        // return lastValueFrom(this.http.post(url, body));
+        return lastValueFrom(this.http.post(url, body, { withCredentials: true }));
     }
 }

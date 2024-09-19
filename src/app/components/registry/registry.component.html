@@ -4,38 +4,38 @@
         <div class="login-form">
             <h1>Register</h1>
             <form (ngSubmit)="onSubmit()" #emailForm="ngForm" ngNativeValidate>
-              <div class="mb-3">
-                <input
-                    type="text"
-                    class="form-control"
-                    id="exampleInputFirstName"
-                    aria-describedby="emailHelp"
-                    placeholder="{{'firstname.placeholder' | translate}}"
-                    required
-                    [(ngModel)]="firstname"
-                    name="firstname" />
+                <div class="mb-3">
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="exampleInputFirstName"
+                        aria-describedby="emailHelp"
+                        placeholder="{{ 'firstname.placeholder' | translate }}"
+                        required
+                        [(ngModel)]="firstname"
+                        name="firstname" />
 
                     <input
-                    type="text"
-                    class="form-control"
-                    id="exampleInputLastName"
-                    aria-describedby="emailHelp"
-                    placeholder="{{'lastname.placeholder' | translate}}"
-                    required
-                    [(ngModel)]="lastname"
-                    name="lastname" />
-            </div>
-              <div class="mb-3">
-                <input
-                    type="text"
-                    class="form-control"
-                    id="exampleInputUsername1"
-                    aria-describedby="emailHelp"
-                    placeholder="{{ 'username.placeholder' | translate }} "
-                    required
-                    [(ngModel)]="username"
-                    name="email" />
-            </div>
+                        type="text"
+                        class="form-control"
+                        id="exampleInputLastName"
+                        aria-describedby="emailHelp"
+                        placeholder="{{ 'lastname.placeholder' | translate }}"
+                        required
+                        [(ngModel)]="lastname"
+                        name="lastname" />
+                </div>
+                <div class="mb-3">
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="exampleInputUsername1"
+                        aria-describedby="emailHelp"
+                        placeholder="{{ 'username.placeholder' | translate }} "
+                        required
+                        [(ngModel)]="username"
+                        name="email" />
+                </div>
                 <div class="mb-3">
                     <input
                         type="email"
@@ -54,26 +54,32 @@
                         class="form-control"
                         id="exampleInputPassword1"
                         minlength="6"
-                        placeholder="{{'password.placeholder' | translate}}"
-                        required 
+                        placeholder="{{ 'password.placeholder' | translate }}"
+                        required
                         [(ngModel)]="password"
-                        name="password"/>
+                        name="password" />
                 </div>
                 <div class="mb-3">
                     <input
                         type="password"
                         class="form-control"
-                     
                         minlength="6"
-                        placeholder="{{ 'confirmPassword.placeholder' | translate }}"
+                        placeholder="{{
+                            'confirmPassword.placeholder' | translate
+                        }}"
                         required
                         [(ngModel)]="confirmPassword"
                         name="confirmPassword" />
-                        <div *ngIf="!passwordsEqual">
-                          {{ "passwordDoesNotMatch" | translate }}
-                        </div>
+                    <div *ngIf="!passwordsEqual">
+                        {{ "passwordDoesNotMatch" | translate }}
+                    </div>
                 </div>
-                <button type="submit" class="btn btn-primary" [disabled]="!passwordsEqual">{{ "register" | translate }}</button>
+                <button
+                    type="submit"
+                    class="btn btn-primary"
+                    [disabled]="!passwordsEqual">
+                    {{ "register" | translate }}
+                </button>
             </form>
         </div>
     </div>
