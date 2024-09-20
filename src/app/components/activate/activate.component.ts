@@ -24,11 +24,8 @@ export class ActivateComponent {
     if (uidb64 && token) {
       this.authService.activateAccount(uidb64, token).subscribe(
         (response: any) => {
-          this.message = response.message || 'Your account has been activated successfully.';
-          // Optional: Weiterleitung zum Login
-          setTimeout(() => {
-            this.router.navigate(['/login']);
-          }, 2000);
+          // Weiterleitung zur Login-Seite mit Query-Parameter
+          this.router.navigate(['/login'], { queryParams: { activated: true } });
         },
         (error) => {
           this.message = 'Activation failed: ' + (error.error?.error || 'Unknown error');

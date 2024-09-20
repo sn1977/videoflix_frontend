@@ -79,7 +79,7 @@ export class RegistryComponent {
               console.log("Response:", resp);
               alert(resp.message);  // Zeigt die Nachricht vom Backend an
               // Du kannst den Benutzer zur Login-Seite weiterleiten oder eine Nachricht anzeigen
-              this.router.navigate(["/login"]);
+              // this.router.navigate(["/login"]);
           } catch (error) {
               console.error("Error:", error);
               alert("Registration failed");
