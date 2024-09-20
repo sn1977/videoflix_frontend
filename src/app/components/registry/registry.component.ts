@@ -30,6 +30,8 @@ export class RegistryComponent {
     confirmPassword: string = "";
     // passwordsEqual: boolean = false;
     currentLanguage: string;
+    message: string = "";
+    errorMessage: string = "";
 
     constructor(
         private languageService: LanguageService,
@@ -43,29 +45,6 @@ export class RegistryComponent {
         return this.password === this.confirmPassword;
     }
 
-    // async onSubmit() {
-    //     if (this.passwordsEqual) {
-    //         console.log(this.email, this.password, this.confirmPassword);
-    //     } else {
-    //         console.log("passwords not equal");
-    //     }
-    //     try {
-    //         const resp = this.authService.register(
-    //             this.firstname,
-    //             this.lastname,
-    //             this.username,
-    //             this.email,
-    //             this.password
-    //         );
-    //         console.log("Response!!!!!:", resp);
-    //         alert("Registration successful");
-    //         this.router.navigate(["/login/"]);
-    //     } catch (error) {
-    //         console.error("Error:", error);
-    //         alert("Registration failed");
-    //     }
-    // }
-
     async onSubmit() {
       if (this.passwordsEqual) {
           try {
@@ -77,16 +56,26 @@ export class RegistryComponent {
                   this.password
               );
               console.log("Response:", resp);
-              alert(resp.message);  // Zeigt die Nachricht vom Backend an
-              // Du kannst den Benutzer zur Login-Seite weiterleiten oder eine Nachricht anzeigen
-              // this.router.navigate(["/login"]);
-          } catch (error) {
-              console.error("Error:", error);
-              alert("Registration failed");
-          }
-      } else {
-          console.log("Passwords do not match");
-          alert("Passwords do not match");
-      }
+                // Anstatt eines Alerts zeige die Nachricht in der Komponente an
+                this.message = resp.message; // Setze die Nachricht vom Backend
+                // Optional: Leere das Formular
+                this.resetForm();
+            } catch (error) {
+                console.error("Error:", error);
+                this.errorMessage = "Registration failed";
+            }
+        } else {
+            console.log("Passwords do not match");
+            this.errorMessage = "Passwords do not match";
+        }
+    }
+
+    resetForm() {
+      this.firstname = '';
+      this.lastname = '';
+      this.username = '';
+      this.email = '';
+      this.password = '';
+      this.confirmPassword = '';
   }
 }

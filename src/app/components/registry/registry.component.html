@@ -1,7 +1,16 @@
 <app-header></app-header>
+
 <div class="background">
     <div class="background">
-        <div class="login-form">
+        <!-- Erfolgsmeldung anzeigen -->
+        <div *ngIf="message" class="alert-message login-form">
+            {{ message }}
+        </div>
+        <!-- Fehlermeldung anzeigen -->
+        <div *ngIf="errorMessage" class="alert login-form">
+            {{ errorMessage }}
+        </div>
+        <div *ngIf="!message && !errorMessage" class="login-form">
             <h1>Register</h1>
             <form (ngSubmit)="onSubmit()" #emailForm="ngForm" ngNativeValidate>
                 <div class="mb-3">
