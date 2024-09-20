@@ -22,15 +22,15 @@ export class ActivateComponent {
     const uidb64 = this.route.snapshot.paramMap.get('uidb64');
     const token = this.route.snapshot.paramMap.get('token');
     if (uidb64 && token) {
-      this.authService.activateAccount(uidb64, token).subscribe(
-        (response: any) => {
+      this.authService.activateAccount(uidb64, token).subscribe({
+        next: (response: any) => {
           // Weiterleitung zur Login-Seite mit Query-Parameter
           this.router.navigate(['/login'], { queryParams: { activated: true } });
         },
-        (error) => {
+        error: (error) => {
           this.message = 'Activation failed: ' + (error.error?.error || 'Unknown error');
         }
-      );
+      });
     } else {
       this.message = 'Invalid activation link.';
     }
