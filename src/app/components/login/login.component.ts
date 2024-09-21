@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component} from "@angular/core";
 import { HeaderComponent } from "../header/header.component";
 import { FooterComponent } from "../footer/footer.component";
 import { ActivatedRoute, Router } from "@angular/router";
@@ -18,10 +18,8 @@ import { CommonModule } from "@angular/common";
 export class LoginComponent {
     isCheckboxChecked = false;
     currentLanguage: string;
-    // email: string = "";
     emailOrUsername: string = '';
     password: string = "";
-    // username: string = "";
     errorMessage: string = '';
 
     toggleSubmitButton(event: Event) {
@@ -39,9 +37,7 @@ export class LoginComponent {
 
     ngOnInit(): void {
         this.route.queryParams.subscribe((params) => {
-            // this.email = params["email"] || "";
             this.emailOrUsername = params["email"];
-            // this.username = params["username"] || "";
         });
     }
 
