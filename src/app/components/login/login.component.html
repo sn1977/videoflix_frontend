@@ -8,21 +8,9 @@
         <h1>{{ "login" | translate }}</h1>
         <form (ngSubmit)="login()">
             <div class="mb-3 block">
-                <!-- <input
-                    type="email"
-                    class="form-control"
-                    id="exampleInputEmail1"
-                    aria-describedby="emailHelp"
-                    pattern="[a-zA-ZO0-9.%+\-]+@[a-zA-Z0-9.\-]+.[a-zA-Z]{2,}"
-                    placeholder="{{ 'email.placeholder' | translate }} "
-                    required
-                    [(ngModel)]="email"
-                    name="email" /> -->
-
                 <label for="emailOrUsername">{{
                     "usernameOrEmail" | translate
                 }}</label>
-
                 <input
                     type="text"
                     class="form-control"
