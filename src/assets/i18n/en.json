@@ -9,6 +9,8 @@
     "firstname.placeholder": "First name",
     "lastname.placeholder": "Last name",
     "username.placeholder": "Username",
+    "usernameOrEmail": "Username or Email",
+    "usernameOrEmail.placeholder": "Enter your username or email",
     "email.placeholder": "Email address",
     "password.placeholder": "Password",
     "email.button": "Log in",

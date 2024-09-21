@@ -1,17 +1,17 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { HeaderComponent } from "../header/header.component";
 import { FooterComponent } from "../footer/footer.component";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { FormsModule } from "@angular/forms";
 import { TranslateModule } from "@ngx-translate/core";
 import { LanguageService } from "../../services/language.service";
 import { AuthService } from "../../services/auth.service";
-import { Router } from "@angular/router";
+import { CommonModule } from "@angular/common";
 
 @Component({
     selector: "app-login",
     standalone: true,
-    imports: [HeaderComponent, FooterComponent, FormsModule, TranslateModule],
+    imports: [HeaderComponent, FooterComponent, FormsModule, TranslateModule, CommonModule],
     templateUrl: "./login.component.html",
     styleUrl: "./login.component.scss",
 })
@@ -19,8 +19,10 @@ export class LoginComponent {
     isCheckboxChecked = false;
     currentLanguage: string;
     // email: string = "";
+    emailOrUsername: string = '';
     password: string = "";
-    username: string = "";
+    // username: string = "";
+    errorMessage: string = '';
 
     toggleSubmitButton(event: Event) {
         this.isCheckboxChecked = (event.target as HTMLInputElement).checked;
@@ -38,24 +40,25 @@ export class LoginComponent {
     ngOnInit(): void {
         this.route.queryParams.subscribe((params) => {
             // this.email = params["email"] || "";
-            this.username = params["username"] || "";
+            this.emailOrUsername = params["email"];
+            // this.username = params["username"] || "";
         });
     }
 
     async login() {
         try {
-            let resp: any = await this.authService.loginWithUsernameAndPassword(
-                this.username,
+            let resp: any = await this.authService.loginWithEmailOrUsernameAndPassword(
+                this.emailOrUsername,
                 this.password
             );
             localStorage.setItem("token", resp.token);
             console.log("Response:", resp);
             console.log("Token gespeichert:", localStorage.getItem("token")); 
-            //TODO - redirect
             this.router.navigate(["/video_selection/"]);
         } catch (error) {
             console.error("Error:", error);
-            alert("Login failed");
+            const err = error as any;
+            this.errorMessage = 'Login failed: ' + (err.error?.error || 'Unknown error');
         }
     }
 }

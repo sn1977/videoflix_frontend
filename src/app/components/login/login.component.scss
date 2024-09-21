@@ -30,6 +30,15 @@ h1 {
     height: 50vh;
     color: #fff;
 
+    .block {
+        display: block;
+    }
+
+    label {
+        font-weight: bold;
+        padding-left: 12px;
+    }
+
     input {
         border: 1px solid #727272;
         background: rgba(12, 12, 12, 0.8);

@@ -1,9 +1,13 @@
 <app-header></app-header>
 <div class="background">
     <div class="login-form">
+        <!-- Fehlermeldung anzeigen -->
+        <div *ngIf="errorMessage" class="alert alert-danger">
+            {{ errorMessage }}
+        </div>
         <h1>{{ "login" | translate }}</h1>
         <form (ngSubmit)="login()">
-            <div class="mb-3">
+            <div class="mb-3 block">
                 <!-- <input
                     type="email"
                     class="form-control"
@@ -14,16 +18,22 @@
                     required
                     [(ngModel)]="email"
                     name="email" /> -->
-                    <input
+
+                <label for="emailOrUsername">{{
+                    "usernameOrEmail" | translate
+                }}</label>
+
+                <input
                     type="text"
                     class="form-control"
                     id="exampleInputEmail1"
                     aria-describedby="emailHelp"
-                    
-                    placeholder="{{ 'email.placeholder' | translate }} "
+                    placeholder="{{
+                        'usernameOrEmail.placeholder' | translate
+                    }} "
                     required
-                    [(ngModel)]="username"
-                    name="username" />
+                    [(ngModel)]="emailOrUsername"
+                    name="emailOrUsername" />
             </div>
             <div class="mb-3">
                 <input
@@ -54,10 +64,14 @@
             </button>
         </form>
         <div class="login-footer">
-            <a href="#"><p>{{ "forgot" | translate }}</p></a>
+            <a href="#"
+                ><p>{{ "forgot" | translate }}</p></a
+            >
             <div>
                 <p>{{ "noAccount" | translate }}</p>
-                <a href="register/"><p>{{ "register" | translate }}</p></a>
+                <a href="register/"
+                    ><p>{{ "register" | translate }}</p></a
+                >
             </div>
         </div>
     </div>
