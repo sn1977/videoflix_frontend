@@ -27,16 +27,6 @@ export class VideoSelectionComponent {
         await this.loadVideos();
     }
 
-    // async loadVideos() {
-    //     try {
-    //         this.allVideos = (await this.videoService.getVideos()) as Video[];
-    //         console.log("All Videos:", this.allVideos);
-    //     } catch (error) {
-    //         console.error("Error:", error);
-    //         this.error = "Error loading videos";
-    //     }
-    // }
-
     async loadVideos() {
       try {
           this.videoService.getVideos().subscribe({
