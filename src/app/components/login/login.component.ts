@@ -1,7 +1,7 @@
 import { Component} from "@angular/core";
 import { HeaderComponent } from "../header/header.component";
 import { FooterComponent } from "../footer/footer.component";
-import { ActivatedRoute, Router } from "@angular/router";
+import { ActivatedRoute, Router, RouterModule } from "@angular/router";
 import { FormsModule } from "@angular/forms";
 import { TranslateModule } from "@ngx-translate/core";
 import { LanguageService } from "../../services/language.service";
@@ -11,7 +11,7 @@ import { CommonModule } from "@angular/common";
 @Component({
     selector: "app-login",
     standalone: true,
-    imports: [HeaderComponent, FooterComponent, FormsModule, TranslateModule, CommonModule],
+    imports: [HeaderComponent, FooterComponent, FormsModule, TranslateModule, CommonModule, RouterModule],
     templateUrl: "./login.component.html",
     styleUrl: "./login.component.scss",
 })

@@ -52,14 +52,19 @@
             </button>
         </form>
         <div class="login-footer">
-            <a href="#"
+            <!-- <a routerLink="/password-reset-request"
                 ><p>{{ "forgot" | translate }}</p></a
-            >
+            > -->
+            <p>
+                <a routerLink="/password-reset-request">{{
+                    "forgot" | translate
+                }}</a>
+            </p>
             <div>
                 <p>{{ "noAccount" | translate }}</p>
-                <a href="register/"
-                    ><p>{{ "register" | translate }}</p></a
-                >
+                <p>
+                    <a href="register/">{{ "register" | translate }}</a>
+                </p>
             </div>
         </div>
     </div>

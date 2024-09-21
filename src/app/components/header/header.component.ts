@@ -26,7 +26,7 @@ export class HeaderComponent {
     ngOnInit(): void {
         // Setze den initialen Wert von showSignupButton basierend auf der aktuellen URL
         const currentUrl = this.router.url;
-        this.showSignupButton = !currentUrl.includes("register");
+        this.showSignupButton = !currentUrl.includes("register" && "video_selection");
         console.log(
             `Initial URL: ${currentUrl}, Show Signup Button: ${this.showSignupButton}`
         );

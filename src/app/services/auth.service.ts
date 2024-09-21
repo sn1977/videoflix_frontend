@@ -41,4 +41,16 @@ export class AuthService {
       const url = `${environment.apiUrl}/activate/${uidb64}/${token}/`;
       return this.http.get(url);
     }
+
+    public requestPasswordReset(email: string) {
+      const url = `${environment.apiUrl}/password-reset/`;
+      const body = { email: email };
+      return this.http.post(url, body);
+    }
+    
+    public resetPassword(uidb64: string, token: string, password: string) {
+      const url = `${environment.apiUrl}/password-reset-confirm/${uidb64}/${token}/`;
+      const body = { password: password };
+      return this.http.post(url, body);
+    }
 }
