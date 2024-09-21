@@ -24,10 +24,6 @@ export class HomeComponent {
         this.currentLanguage = this.languageService.getCurrentLanguage();
     }
 
-    // ngOnInit() {
-    //   console.log('Current language in HomeComponent:', this.currentLanguage);
-    // }
-
     onSubmit() {
         this.router.navigate(["/login/"], {
             queryParams: { email: this.email },
