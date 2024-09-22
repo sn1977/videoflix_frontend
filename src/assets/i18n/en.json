@@ -20,6 +20,16 @@
     "register": "Sign up",
     "confirmPassword.placeholder": "Confirm password",
     "passwordDoesNotMatch": "Passwords do not match",
+    "resetPassword": "Reset Password",
+    "email": "Email",
+    "enterEmail.placeholder": "Enter your email",
+    "sendResetLink": "Send Reset Link",
+    "setNewPassword": "Set New Password",
+    "newPassword": "New Password",
+    "newPassword.placeholder": "Enter your new password",
+    "confirmNewPassword": "Confirm New Password",
+    "confirmNewPassword.placeholder": "Confirm your new password",
+    "resetPassword": "Reset Password",
     "dataPrivacy": "Data Privacy",
     "imprint": "Imprint"
 }

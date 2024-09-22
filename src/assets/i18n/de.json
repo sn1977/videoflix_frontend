@@ -20,7 +20,15 @@
     "register": "Registrieren",
     "confirmPassword.placeholder": "Passwort bestätigen",
     "passwordDoesNotMatch": "Passwort stimmt nicht überein",
-    "dataPrivacy": "Datenschutz",
+    "resetPassword": "Passwort zurücksetzen",
+    "email": "E-Mail",
+    "enterEmail.placeholder": "Geben Sie Ihre E-Mail ein",
+    "sendResetLink": "Link zum Zurücksetzen senden",
+    "setNewPassword": "Neues Passwort festlegen",
+    "newPassword": "Neues Passwort",
+    "newPassword.placeholder": "Geben Sie Ihr neues Passwort ein",
+    "confirmNewPassword": "Neues Passwort bestätigen",
+    "resetPassword": "Passwort zurücksetzen",
+    "confirmNewPassword.placeholder": "Bestätigen Sie Ihr neues Passwort",
     "imprint": "Impressum"
-
 }
