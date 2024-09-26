@@ -10,7 +10,8 @@ export class AuthService {
     constructor(private http: HttpClient) {}
 
     public loginWithEmailOrUsernameAndPassword(emailOrUsername: string, password: string) {
-      const url = environment.apiUrl + '/login/';
+      // const url = environment.apiUrl + '/login/';
+      const url = `${environment.apiUrl}/login/`; // Verwenden Sie Template-Strings für Klarheit
       const body = {
           email_or_username: emailOrUsername,
           password: password,
@@ -25,7 +26,8 @@ export class AuthService {
         email: string,
         password: string
     ) {
-        const url = environment.apiUrl + "/register/";
+        // const url = environment.apiUrl + "/register/";
+        const url = `${environment.apiUrl}/register/`;
         const body = {
             first_name: firstname,
             last_name: lastname,

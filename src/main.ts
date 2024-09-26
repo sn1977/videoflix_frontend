@@ -5,12 +5,13 @@ import { AppComponent } from './app/app.component';
 // import { enableProdMode } from "@angular/core";
 // import { platformBrowserDynamic } from "@angular/platform-browser-dynamic";
 import * as Sentry from "@sentry/angular";
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 // import { AppModule } from "./app/app.module";
 
 bootstrapApplication(AppComponent, {
   providers: [
-    ...appConfig.providers
+    ...appConfig.providers, provideAnimationsAsync()
   ]
 })
 .catch(err => console.error(err));
