@@ -64,7 +64,7 @@ import { environment } from "../../../environments/environment"; // Importiere e
     standalone: true,
     imports: [HeaderComponent, CommonModule, FooterComponent],
     templateUrl: "./video-selection.component.html",
-    styleUrls: ["./video-selection.component.scss"], // Korrigiert zu 'styleUrls'
+    styleUrls: ["./video-selection.component.scss"], 
 })
 export class VideoSelectionComponent implements OnInit, AfterViewInit {
     allVideos: Video[] = [];

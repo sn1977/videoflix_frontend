@@ -11,7 +11,7 @@ export interface Video {
   id: number;
   title: string;
   description: string;
-  created_at: string;
+  created_at: Date;
   video_file: string;
   hls_url: string; // Hinzugefügt
 }
