@@ -1,13 +1,13 @@
-<app-header></app-header>
+<!-- <app-header></app-header>
 <div *ngIf="allVideos.length > 0; else noVideos" class="background">
-  <div *ngFor="let video of allVideos" class="video-item"> 
+  <div *ngFor="let video of allVideos" class="video-item">  -->
     <!-- <img [src]="video.id" alt="{{ video.title }}" class="video-thumbnail"> -->
-     <h3>{{ video.title }}</h3>
+     <!-- <h3>{{ video.title }}</h3>
     <p>{{ video.id }}</p>
     <p>{{ video.description }}</p>
-    <p>{{ video.created_at }}</p> 
+    <p>{{ video.created_at }}</p>  -->
     <!-- <p>{{ video.video_file }}</p> -->
-    <video width="320" height="240" controls>
+    <!-- <video width="320" height="240" controls>
       <source [src]="video.video_file" type="video/mp4">
       Your browser does not support the video tag.
     </video>
@@ -16,7 +16,7 @@
 <ng-template #noVideos>
   <p>No videos available.</p>
 </ng-template>
-<app-footer></app-footer>
+<app-footer></app-footer> -->
 
 <!-- src/app/components/video-selection/video-selection.component.html -->
 
@@ -34,4 +34,26 @@
 </ng-template>
 <app-footer></app-footer>  -->
 
-
+<app-header></app-header>
+<div *ngIf="categories.length > 0; else noVideos" class="background">
+  <div *ngFor="let category of categories" class="category-section">
+    <h2>{{ category.name }}</h2>
+    <div class="videos-container">
+      <div *ngFor="let video of category.videos" class="video-item">
+        <img 
+          [src]="video.thumbnail" 
+          alt="{{ video.title }}" 
+          class="video-thumbnail" 
+          (click)="playVideo(video.id)" 
+        />
+        <!-- <h3>{{ video.title }}</h3>
+        <p>{{ video.description }}</p>
+        <p>{{ video.created_at | date:'medium' }}</p> -->
+      </div>
+    </div>
+  </div>
+</div>
+<ng-template #noVideos>
+  <p>No videos available.</p>
+</ng-template>
+<app-footer></app-footer>

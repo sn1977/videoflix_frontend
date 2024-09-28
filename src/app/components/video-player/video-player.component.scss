@@ -1,0 +1,14 @@
+.video-player-container {
+  padding: 20px;
+  text-align: center;
+}
+
+video {
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.error {
+  color: red;
+  font-weight: bold;
+}

@@ -48,16 +48,110 @@
 
 // src/app/components/video-selection/video-selection.component.ts
 
-import { Component, OnInit, AfterViewInit, ViewChildren, QueryList, ElementRef, ChangeDetectorRef } from "@angular/core";
+// import { Component, OnInit, AfterViewInit, ViewChildren, QueryList, ElementRef, ChangeDetectorRef } from "@angular/core";
+// import { HeaderComponent } from "../header/header.component";
+// import { LanguageService } from "../../services/language.service";
+// import { AuthService } from "../../services/auth.service";
+// import { VideoService } from "../../services/video.service";
+// import { Video } from "../../models/video-model";
+// import { CommonModule } from "@angular/common";
+// import { FooterComponent } from "../footer/footer.component";
+// import Hls from 'hls.js';
+// import { environment } from "../../../environments/environment"; // Importiere environment
+
+// @Component({
+//     selector: "app-video-selection",
+//     standalone: true,
+//     imports: [HeaderComponent, CommonModule, FooterComponent],
+//     templateUrl: "./video-selection.component.html",
+//     styleUrls: ["./video-selection.component.scss"], 
+// })
+// export class VideoSelectionComponent implements OnInit, AfterViewInit {
+//     allVideos: Video[] = [];
+//     error = "";
+
+//     @ViewChildren('videoPlayer') videoPlayers!: QueryList<ElementRef<HTMLVideoElement>>; // Hinzugefügt
+
+//     constructor(
+//         private languageService: LanguageService,
+//         private authService: AuthService,
+//         public videoService: VideoService,
+//         private cdr: ChangeDetectorRef // Hinzugefügt
+//     ) {}
+
+//     ngOnInit(): void {
+//         this.loadVideos();
+//     }
+
+//     loadVideos(): void {
+//         this.videoService.getVideos().subscribe({
+//             next: (videos: Video[]) => {
+//                 this.allVideos = videos;
+//                 console.log("All Videos:", this.allVideos);
+//                 this.cdr.detectChanges(); // Änderungen erkennen
+//                 this.initializePlayers(); // Player initialisieren
+//             },
+//             error: (error) => {
+//                 console.error("Error:", error);
+//                 this.error = "Error loading videos";
+//             }
+//         });
+//     }
+
+//     ngAfterViewInit(): void {
+//         // Die Initialisierung der Player erfolgt nach dem Laden der Videos in loadVideos()
+//     }
+
+//     initializePlayers(): void {
+//         this.videoPlayers.forEach((videoElementRef: ElementRef<HTMLVideoElement>, index: number) => {
+//             const videoElement = videoElementRef.nativeElement;
+//             const video = this.allVideos[index];
+
+//             if (Hls.isSupported()) {
+//                 const hls = new Hls();
+//                 hls.loadSource(video.hls_url);
+//                 hls.attachMedia(videoElement);
+//                 hls.on(Hls.Events.MANIFEST_PARSED, () => {
+//                     videoElement.play();
+//                 });
+//                 hls.on(Hls.Events.ERROR, (event, data) => {
+//                     if (data.fatal) {
+//                         switch (data.type) {
+//                             case Hls.ErrorTypes.NETWORK_ERROR:
+//                                 console.error('Network error encountered, trying to recover');
+//                                 hls.startLoad();
+//                                 break;
+//                             case Hls.ErrorTypes.MEDIA_ERROR:
+//                                 console.error('Media error encountered, trying to recover');
+//                                 hls.recoverMediaError();
+//                                 break;
+//                             default:
+//                                 hls.destroy();
+//                                 break;
+//                         }
+//                     }
+//                 });
+//             } else if (videoElement.canPlayType('application/vnd.apple.mpegurl')) {
+//                 videoElement.src = video.hls_url;
+//                 videoElement.addEventListener('loadedmetadata', () => {
+//                     videoElement.play();
+//                 });
+//             } else {
+//                 console.error('HLS not supported in this browser');
+//             }
+//         });
+//     }
+// }
+
+import { Component, OnInit } from "@angular/core";
 import { HeaderComponent } from "../header/header.component";
 import { LanguageService } from "../../services/language.service";
 import { AuthService } from "../../services/auth.service";
 import { VideoService } from "../../services/video.service";
-import { Video } from "../../models/video-model";
+import { Category } from "../../models/video-model";
 import { CommonModule } from "@angular/common";
 import { FooterComponent } from "../footer/footer.component";
-import Hls from 'hls.js';
-import { environment } from "../../../environments/environment"; // Importiere environment
+import { Router } from "@angular/router";  // Importiert Router
 
 @Component({
     selector: "app-video-selection",
@@ -66,80 +160,35 @@ import { environment } from "../../../environments/environment"; // Importiere e
     templateUrl: "./video-selection.component.html",
     styleUrls: ["./video-selection.component.scss"], 
 })
-export class VideoSelectionComponent implements OnInit, AfterViewInit {
-    allVideos: Video[] = [];
+export class VideoSelectionComponent implements OnInit {
+    categories: Category[] = [];
     error = "";
-
-    @ViewChildren('videoPlayer') videoPlayers!: QueryList<ElementRef<HTMLVideoElement>>; // Hinzugefügt
 
     constructor(
         private languageService: LanguageService,
         private authService: AuthService,
         public videoService: VideoService,
-        private cdr: ChangeDetectorRef // Hinzugefügt
+        private router: Router  // Injektionspunkt für Router
     ) {}
 
     ngOnInit(): void {
-        this.loadVideos();
+        this.loadCategories();
     }
 
-    loadVideos(): void {
-        this.videoService.getVideos().subscribe({
-            next: (videos: Video[]) => {
-                this.allVideos = videos;
-                console.log("All Videos:", this.allVideos);
-                this.cdr.detectChanges(); // Änderungen erkennen
-                this.initializePlayers(); // Player initialisieren
+    loadCategories(): void {
+        this.videoService.getCategories().subscribe({
+            next: (categories: Category[]) => {
+                this.categories = categories;
+                console.log("Categories:", this.categories);
             },
             error: (error) => {
                 console.error("Error:", error);
-                this.error = "Error loading videos";
+                this.error = "Error loading categories";
             }
         });
     }
 
-    ngAfterViewInit(): void {
-        // Die Initialisierung der Player erfolgt nach dem Laden der Videos in loadVideos()
-    }
-
-    initializePlayers(): void {
-        this.videoPlayers.forEach((videoElementRef: ElementRef<HTMLVideoElement>, index: number) => {
-            const videoElement = videoElementRef.nativeElement;
-            const video = this.allVideos[index];
-
-            if (Hls.isSupported()) {
-                const hls = new Hls();
-                hls.loadSource(video.hls_url);
-                hls.attachMedia(videoElement);
-                hls.on(Hls.Events.MANIFEST_PARSED, () => {
-                    videoElement.play();
-                });
-                hls.on(Hls.Events.ERROR, (event, data) => {
-                    if (data.fatal) {
-                        switch (data.type) {
-                            case Hls.ErrorTypes.NETWORK_ERROR:
-                                console.error('Network error encountered, trying to recover');
-                                hls.startLoad();
-                                break;
-                            case Hls.ErrorTypes.MEDIA_ERROR:
-                                console.error('Media error encountered, trying to recover');
-                                hls.recoverMediaError();
-                                break;
-                            default:
-                                hls.destroy();
-                                break;
-                        }
-                    }
-                });
-            } else if (videoElement.canPlayType('application/vnd.apple.mpegurl')) {
-                videoElement.src = video.hls_url;
-                videoElement.addEventListener('loadedmetadata', () => {
-                    videoElement.play();
-                });
-            } else {
-                console.error('HLS not supported in this browser');
-            }
-        });
+    playVideo(videoId: number): void {
+        this.router.navigate(['/play-video', videoId]);  // Navigiert zur VideoPlayer-Komponente
     }
 }
-

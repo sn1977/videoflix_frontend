@@ -1,0 +1,14 @@
+<app-header></app-header>
+<div *ngIf="video; else loading" class="video-player-container">
+  <h2>{{ video.title }}</h2>
+  <p>{{ video.description }}</p>
+  <video width="800" controls>
+    <source [src]="video.video_file" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+</div>
+<ng-template #loading>
+  <p *ngIf="!error">Loading video...</p>
+  <p *ngIf="error" class="error">{{ error }}</p>
+</ng-template>
+<app-footer></app-footer>

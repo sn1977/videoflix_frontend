@@ -8,4 +8,39 @@
     // background-size: cover;
     background-position: center;
     background-color: rgba(0, 0, 0, 0.3);
+    flex-direction: column;
+}
+
+.category-section {
+    margin-bottom: 40px;
+    width: 100vw;
+    padding-left: 64px;
+}
+
+.videos-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.video-item {
+    width: 200px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.video-thumbnail {
+    width: 150%;
+    height: auto;
+    // border-radius: 8px;
+    transition: transform 0.3s;
+}
+
+.video-thumbnail:hover {
+    transform-origin: bottom left;
+    transform: scale(1.5);
+}
+
+h2 {
+    margin-bottom: 20px;
 }
