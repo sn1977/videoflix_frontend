@@ -34,7 +34,7 @@
 </ng-template>
 <app-footer></app-footer>  -->
 
-<app-header></app-header>
+<!-- <app-header></app-header>
 <div *ngIf="categories.length > 0; else noVideos" class="background">
   <div *ngFor="let category of categories" class="category-section">
     <h2>{{ category.name }}</h2>
@@ -46,9 +46,75 @@
           class="video-thumbnail" 
           (click)="playVideo(video.id)" 
         />
-        <!-- <h3>{{ video.title }}</h3>
-        <p>{{ video.description }}</p>
-        <p>{{ video.created_at | date:'medium' }}</p> -->
+      </div>
+    </div>
+  </div>
+</div>
+<ng-template #noVideos>
+  <p>No videos available.</p>
+</ng-template>
+<app-footer></app-footer> -->
+
+
+<!-- <app-header></app-header>
+<div *ngIf="categories.length > 0; else noVideos" class="background">
+  <div *ngFor="let category of categories" class="category-section">
+    <h2>{{ category.name }}</h2>
+    <div class="videos-container">
+      <div *ngFor="let video of category.videos" class="video-item">
+        <div class="thumbnail-wrapper">
+          <img 
+            [src]="video.thumbnail" 
+            alt="{{ video.title }}" 
+            class="video-thumbnail" 
+            (click)="playVideo(video.id)" 
+          />
+          <div class="overlay">
+            <button class="play-button" (click)="playVideo(video.id)">
+              ▶️
+            </button>
+            <p class="description">{{ video.description }}</p>
+            <button class="sound-button" (click)="toggleSound(video.id)">
+              🔊
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<ng-template #noVideos>
+  <p>No videos available.</p>
+</ng-template>
+<app-footer></app-footer> -->
+
+<app-header></app-header>
+<div *ngIf="categories.length > 0; else noVideos" class="background">
+  <div *ngFor="let category of categories" class="category-section">
+    <h2>{{ category.name }}</h2>
+    <div class="videos-container">
+      <div 
+        *ngFor="let video of category.videos; let i = index" 
+        class="video-item" 
+        [ngClass]="{'first-video-item': i === 0}"
+      >
+        <div class="thumbnail-wrapper">
+          <img 
+            [src]="video.thumbnail" 
+            alt="{{ video.title }}" 
+            class="video-thumbnail" 
+            (click)="playVideo(video.id)" 
+          />
+          <div class="overlay">
+            <button class="play-button" (click)="playVideo(video.id)">
+              ▶️
+            </button>
+            <p class="description">{{ video.description }}</p>
+            <button class="sound-button" (click)="toggleSound(video.id)">
+              🔊
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   </div>

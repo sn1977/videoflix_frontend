@@ -1,46 +1,353 @@
+// @import "../../../styles/mixins.scss";
+
+// .background {
+//     @include dFlex;
+//     height: 100vh;
+//     // background-image: url("../../../assets/img/background_img.webp");
+//     // background-repeat: no-repeat;
+//     // background-size: cover;
+//     background-position: center;
+//     background-color: rgba(0, 0, 0, 0.3);
+//     flex-direction: column;
+// }
+
+// .category-section {
+//     margin-bottom: 40px;
+//     width: 100vw;
+//     padding-left: 64px;
+// }
+
+// .videos-container {
+//     display: flex;
+//     flex-wrap: wrap;
+//     gap: 20px;
+// }
+
+// .video-item {
+//     width: 200px;
+//     cursor: pointer;
+//     text-align: center;
+//     // position: relative;
+//     // overflow: hidden;
+// }
+
+// .video-thumbnail {
+//     width: 150%;
+//     height: auto;
+//     transition: transform 0.3s ease;
+// }
+
+// .video-thumbnail:hover {
+//     transform-origin: bottom left;
+//     transform: scale(1.5);
+// }
+
+// h2 {
+//     margin-bottom: 20px;
+// }
+
+// @import "../../../styles/mixins.scss";
+
+// .background {
+//     @include dFlex;
+//     min-height: 100vh; /* Verwendet min-height für bessere Responsiveness */
+//     background-position: center;
+//     background-color: rgba(0, 0, 0, 0.3);
+//     flex-direction: column;
+//     padding: 20px; /* Fügt Padding hinzu für besseren Abstand */
+// }
+
+// .category-section {
+//     margin-bottom: 40px;
+//     padding-left: 64px;
+//     // width: 100vw;
+// }
+
+// .videos-container {
+//     display: flex;
+//     flex-wrap: wrap;
+//     gap: 16px; /* Abstand von 16px zwischen den Video-Items */
+// }
+
+// .video-item {
+//     width: 200px; /* Initiale Breite */
+//     cursor: pointer;
+//     text-align: center;
+//     transition: transform 0.3s ease; /* Sanfte Animation beim Hover */
+// }
+
+// .video-item:hover {
+//     // transform: translateY(-5px); /* Optional: leichtes Anheben des Video-Items */
+//     transform: scale(1.3); /* Vergrößert das Thumbnail um 30% beim Hover */
+// }
+
+// .thumbnail-wrapper {
+//     display: flex;
+//     flex-direction: column;
+//     align-items: center;
+// }
+
+// .video-thumbnail {
+//     width: 200px; /* Initiale feste Breite */
+//     height: 120px; /* Initiale feste Höhe */
+//     object-fit: cover; /* Sorgt dafür, dass das Bild das Container ausfüllt */
+//     transition: width 0.3s ease, height 0.3s ease; /* Sanfte Änderung der Größe */
+//     cursor: pointer; /* Zeigt an, dass das Bild klickbar ist */
+// }
+
+// .video-item:hover .video-thumbnail {
+//     width: 300px; /* Festgelegte größere Breite beim Hover */
+//     height: 200px; /* Festgelegte größere Höhe beim Hover */
+// }
+
+// .overlay {
+//     width: 200px; /* Anfangs gleiche Breite wie das Thumbnail */
+//     background-color: rgba(0, 0, 0, 0.7); /* Schwarzer Hintergrund mit Transparenz */
+//     color: white;
+//     padding: 10px;
+//     box-sizing: border-box;
+//     opacity: 0; /* Startet versteckt */
+//     transition: opacity 0.3s ease, width 0.3s ease; /* Sanfte Einblendung und Breitenänderung */
+//     display: flex;
+//     align-items: center;
+//     justify-content: space-between;
+//     margin-top: -4px; /* Abstand zum Thumbnail */
+//     border-bottom-left-radius: 8px;
+//     border-bottom-right-radius: 8px;
+// }
+
+// .video-item:hover .overlay {
+//     opacity: 1; /* Zeigt die Overlay bei Hover */
+//     width: 300px; /* Breite der Overlay an die vergrößerte Breite des Thumbnails anpassen */
+//     height:200px;
+// }
+
+// .play-button,
+// .sound-button {
+//     background: none;
+//     border: none;
+//     color: white;
+//     font-size: 1.2em;
+//     cursor: pointer;
+// }
+
+// .description {
+//     flex: 1;
+//     margin: 0 10px;
+//     font-size: 0.9em;
+// }
+
+// h2 {
+//     margin-bottom: 20px;
+// }
+
+// /* Responsive Design */
+// @media (max-width: 768px) {
+//     .category-section {
+//         padding-left: 32px;
+//     }
+
+//     .video-item {
+//         width: 150px;
+//     }
+
+//     .video-thumbnail {
+//         width: 150px;
+//         height: 90px;
+//     }
+
+//     .video-item:hover .video-thumbnail {
+//         width: 180px;
+//         height: 120px;
+//     }
+
+//     .overlay {
+//         width: 150px;
+//     }
+
+//     .video-item:hover .overlay {
+//         width: 180px;
+//     }
+
+//     .description {
+//         font-size: 0.8em;
+//     }
+// }
+
+// /* Spezifische Anpassungen für das erste video-item in jeder Kategorie */
+// .category-section .videos-container .video-item:first-child {
+//   transform-origin: left bottom; /* Skalierung von der linken unteren Ecke */
+// }
+
+// .category-section .videos-container .video-item:first-child:hover {
+//   transform: scale(1.3); /* Skaliere um 30% beim Hover */
+// }
+
+// .category-section .videos-container .video-item:first-child:hover .video-thumbnail {
+//   width: 300px; /* Größere Breite */
+//   height: 200px; /* Größere Höhe */
+// }
+
+// .category-section .videos-container .video-item:first-child:hover .overlay {
+//   width: 300px; /* Gleiche Breite wie das vergrößerte Thumbnail */
+//   height: 200px;
+// }
+
 @import "../../../styles/mixins.scss";
 
 .background {
     @include dFlex;
-    height: 100vh;
-    // background-image: url("../../../assets/img/background_img.webp");
-    // background-repeat: no-repeat;
-    // background-size: cover;
+    min-height: 100vh; /* Bessere Responsiveness */
     background-position: center;
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: rgba(0, 0, 0, 0.9);
     flex-direction: column;
+    padding: 20px; /* Abstand */
 }
 
 .category-section {
     margin-bottom: 40px;
-    width: 100vw;
     padding-left: 64px;
+    width: 100vw;
+
+    h2 {
+        color: #fff;
+    }
 }
 
 .videos-container {
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
+    gap: 16px; /* Abstand zwischen den Video-Items */
 }
 
 .video-item {
-    width: 200px;
+    width: 200px; /* Initiale Breite */
     cursor: pointer;
     text-align: center;
+    transition: transform 0.3s ease; /* Sanfte Animation beim Hover */
+}
+
+.video-item:hover {
+    /* Entfernen von translateY und verwenden von scale */
+    transform: scale(1.3); /* Vergrößert das Thumbnail um 30% beim Hover */
+}
+
+.thumbnail-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .video-thumbnail {
-    width: 150%;
-    height: auto;
-    // border-radius: 8px;
-    transition: transform 0.3s;
+    width: 200px; /* Initiale feste Breite */
+    height: 120px; /* Initiale feste Höhe */
+    object-fit: cover; /* Sorgt dafür, dass das Bild den Container ausfüllt */
+    transition: width 0.3s ease, height 0.3s ease; /* Sanfte Änderung der Größe */
+    cursor: pointer; /* Klickbar */
 }
 
-.video-thumbnail:hover {
-    transform-origin: bottom left;
-    transform: scale(1.5);
+.video-item:hover .video-thumbnail {
+    width: 300px; /* Größere Breite beim Hover */
+    height: 200px; /* Größere Höhe beim Hover */
+}
+
+.overlay {
+    width: 200px; /* Anfangs gleiche Breite wie das Thumbnail */
+    background-color: rgba(
+        0,
+        0,
+        0,
+        0.7
+    ); /* Transparenter schwarzer Hintergrund */
+    color: white;
+    padding: 10px;
+    box-sizing: border-box;
+    opacity: 0; /* Versteckt */
+    transition: opacity 0.3s ease, width 0.3s ease; /* Sanfte Einblendung und Breitenänderung */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: -4px; /* Abstand zum Thumbnail */
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    z-index: 10; /* Stellt sicher, dass das Overlay über anderen Elementen liegt */
+}
+
+.video-item:hover .overlay {
+    opacity: 1; /* Zeigt Overlay bei Hover */
+    width: 300px; /* Breite an vergrößertes Thumbnail anpassen */
+    height: 200px;
+}
+
+.play-button,
+.sound-button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.2em;
+    cursor: pointer;
+}
+
+.description {
+    flex: 1;
+    margin: 0 10px;
+    font-size: 0.9em;
 }
 
 h2 {
     margin-bottom: 20px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .category-section {
+        padding-left: 32px;
+    }
+
+    .video-item {
+        width: 150px;
+    }
+
+    .video-thumbnail {
+        width: 150px;
+        height: 90px;
+    }
+
+    .video-item:hover .video-thumbnail {
+        width: 180px;
+        height: 120px;
+    }
+
+    .overlay {
+        width: 150px;
+    }
+
+    .video-item:hover .overlay {
+        width: 180px;
+    }
+
+    .description {
+        font-size: 0.8em;
+    }
+}
+
+/* Spezifische Anpassungen für das erste video-item in jeder Kategorie */
+// .first-video-item {
+//     transform-origin: left bottom; /* Skalierung von der linken Mitte */
+// }
+
+.first-video-item:hover {
+    transform: scale(1.3); /* Skaliere um 30% beim Hover */
+    // transform: translateX(16px);
+    margin-left: 64px;
+}
+
+.first-video-item:hover .video-thumbnail {
+    width: 300px; /* Größere Breite */
+    height: 200px; /* Größere Höhe */
+}
+
+.first-video-item:hover .overlay {
+    width: 300px; /* Gleiche Breite wie das vergrößerte Thumbnail */
+    height: 200px;
 }

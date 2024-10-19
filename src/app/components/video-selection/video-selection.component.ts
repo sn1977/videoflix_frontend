@@ -191,4 +191,10 @@ export class VideoSelectionComponent implements OnInit {
     playVideo(videoId: number): void {
         this.router.navigate(['/play-video', videoId]);  // Navigiert zur VideoPlayer-Komponente
     }
+
+    toggleSound(videoId: number): void {
+      // Implementiere die Logik zum Stummschalten des Videos
+      // Dies hängt davon ab, wie du den Video-Player implementierst
+      console.log(`Toggle sound for video ID: ${videoId}`);
+  }
 }
