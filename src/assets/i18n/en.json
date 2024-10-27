@@ -31,5 +31,10 @@
     "confirmNewPassword.placeholder": "Confirm your new password",
     "resetPassword": "Reset Password",
     "dataPrivacy": "Data Privacy",
-    "imprint": "Imprint"
+    "imprint": "Imprint",
+    "video_selection": {
+      "drama": "Drama",
+      "action": "Action",
+      "romantik": "Romance"
+    }
 }

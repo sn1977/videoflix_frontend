@@ -30,5 +30,10 @@
     "confirmNewPassword": "Neues Passwort bestätigen",
     "resetPassword": "Passwort zurücksetzen",
     "confirmNewPassword.placeholder": "Bestätigen Sie Ihr neues Passwort",
-    "imprint": "Impressum"
+    "imprint": "Impressum",
+    "video_selection": {
+      "drama": "Drama",
+      "action": "Action",
+      "romantik": "Romantik"
+    }
 }

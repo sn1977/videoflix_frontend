@@ -1,4 +1,4 @@
-<app-header></app-header>
+<!-- <app-header></app-header>
 
 <div *ngIf="categories.length > 0; else noVideos" class="background">
   <div *ngFor="let category of categories" class="category-section">
@@ -15,7 +15,21 @@
             alt="{{ video.title }}" 
             class="video-thumbnail" 
             (click)="playVideo(video)"
-          />
+          /> -->
+
+<!-- Video Preview -->
+<!-- <video 
+          id="preview-video-{{video.id}}" 
+          class="video-preview" 
+          [src]="video.video_file" 
+          muted 
+          loop 
+          playsinline 
+          preload="none"
+          (mouseenter)="startPreview(video.id)" 
+          (mouseleave)="stopPreview(video.id)">
+        </video>
+
           <div class="overlay">
             <button class="play-button" (click)="playVideo(video); $event.stopPropagation()">
               ▶️
@@ -24,18 +38,6 @@
             <button class="sound-button" (click)="toggleSound(video.id); $event.stopPropagation()">
               🔊
             </button>
-            
-            <!-- Video Preview -->
-            <!-- <video 
-              id="preview-video-{{video.id}}" 
-              class="video-preview" 
-              [src]="video.video_file" 
-              muted 
-              loop 
-              playsinline 
-              (mouseenter)="startPreview(video.id)" 
-              (mouseleave)="stopPreview(video.id)">
-            </video> -->
           </div>
         </div>
       </div>
@@ -47,12 +49,78 @@
   <p>No videos available.</p>
 </ng-template>
 
-<app-footer></app-footer>
+<app-footer></app-footer> -->
 
 <!-- Overlay Video Player mit der separaten Video.js Komponente -->
-<div #fullscreenContainer class="fullscreen-container" *ngIf="selectedVideo">
+<!-- <div #fullscreenContainer class="fullscreen-container" *ngIf="selectedVideo">
   <div class="video-container">
     <app-vjs-player [options]="videoOptions"></app-vjs-player>
     <button class="close-button" (click)="closeVideo()">✖️</button>
   </div>
+</div> -->
+
+<app-header></app-header>
+
+<div *ngIf="categories.length > 0; else noVideos" class="background">
+    <div *ngFor="let category of categories" class="category-section">
+        <h2>{{ getTranslationKey(category.name) | translate }}</h2>
+        <div class="videos-container">
+            <div
+                *ngFor="let video of category.videos; let i = index"
+                class="video-item"
+                [ngClass]="{ 'first-video-item': i === 0 }">
+                <div
+                    class="thumbnail-wrapper"
+                    (click)="playVideo(video)"
+                    (mouseenter)="startPreview(video.id)"
+                    (mouseleave)="stopPreview(video.id)">
+                    <img
+                        [src]="video.thumbnail"
+                        alt="{{ video.title }}"
+                        class="video-thumbnail" />
+
+                    <!-- Video Preview -->
+                    <video
+                        id="preview-video-{{ video.id }}"
+                        class="video-preview"
+                        [src]="video.video_file"
+                        muted
+                        loop
+                        playsinline
+                        preload="none"></video>
+                    <div class="overlay">
+                        <button
+                            class="play-button"
+                            (click)="
+                                playVideo(video); $event.stopPropagation()
+                            ">
+                            ▶️
+                        </button>
+                        <p class="description">{{ video.description }}</p>
+                        <button
+                            class="sound-button"
+                            (click)="
+                                toggleSound(video.id); $event.stopPropagation()
+                            ">
+                            🔊
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #noVideos>
+    <p>No videos available.</p>
+</ng-template>
+
+<app-footer></app-footer>
+
+<!-- Overlay Video Player mit der separaten Video.js Komponente -->
+<div #fullscreenContainer class="fullscreen-container" *ngIf="selectedVideo">
+    <div class="video-container">
+        <app-vjs-player [options]="videoOptions"></app-vjs-player>
+        <button class="close-button" (click)="closeVideo()">✖️</button>
+    </div>
 </div>
