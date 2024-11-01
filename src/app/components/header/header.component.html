@@ -19,5 +19,8 @@
         <button *ngIf="showSignupButton" type="button" class="btn btn-primary" (click)="register()">
             {{ "signup" | translate }}
         </button>
+        <button *ngIf="showLogoutButton" type="button" class="btn btn-primary" (click)="logout()">
+          {{ "logout" | translate }}
+      </button>
     </div>
 </div>

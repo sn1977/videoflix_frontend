@@ -1,68 +1,35 @@
-<!-- <app-header></app-header>
-
-<div *ngIf="categories.length > 0; else noVideos" class="background">
-  <div *ngFor="let category of categories" class="category-section">
-    <h2>{{ category.name }}</h2>
-    <div class="videos-container">
-      <div 
-        *ngFor="let video of category.videos; let i = index" 
-        class="video-item" 
-        [ngClass]="{'first-video-item': i === 0}"
-      >
-        <div class="thumbnail-wrapper">
-          <img 
-            [src]="video.thumbnail" 
-            alt="{{ video.title }}" 
-            class="video-thumbnail" 
-            (click)="playVideo(video)"
-          /> -->
-
-<!-- Video Preview -->
-<!-- <video 
-          id="preview-video-{{video.id}}" 
-          class="video-preview" 
-          [src]="video.video_file" 
-          muted 
-          loop 
-          playsinline 
-          preload="none"
-          (mouseenter)="startPreview(video.id)" 
-          (mouseleave)="stopPreview(video.id)">
-        </video>
-
-          <div class="overlay">
-            <button class="play-button" (click)="playVideo(video); $event.stopPropagation()">
-              ▶️
-            </button>
-            <p class="description">{{ video.description }}</p>
-            <button class="sound-button" (click)="toggleSound(video.id); $event.stopPropagation()">
-              🔊
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<ng-template #noVideos>
-  <p>No videos available.</p>
-</ng-template>
-
-<app-footer></app-footer> -->
-
-<!-- Overlay Video Player mit der separaten Video.js Komponente -->
-<!-- <div #fullscreenContainer class="fullscreen-container" *ngIf="selectedVideo">
-  <div class="video-container">
-    <app-vjs-player [options]="videoOptions"></app-vjs-player>
-    <button class="close-button" (click)="closeVideo()">✖️</button>
-  </div>
-</div> -->
-
 <app-header></app-header>
 
-<div *ngIf="categories.length > 0; else noVideos" class="background">
-    <div *ngFor="let category of categories" class="category-section">
+<!-- Allgemeines Preview-Video (PreviewVideo Kategorie) -->
+<div
+    *ngIf="previewCategory"
+    class="general-preview-wrapper"
+    (mouseenter)="startGeneralPreview()"
+    (mouseleave)="stopGeneralPreview()">
+    <video
+        id="general-preview-video"
+        class="general-preview-video"
+        [src]="previewCategory.videos[0]?.video_file"
+        muted
+        loop
+        playsinline
+        preload="auto"></video>
+    <div class="general-overlay">
+        <button
+            class="play-button"
+            (click)="playGeneralVideo(); $event.stopPropagation()"
+            aria-label="Play General Preview Video">
+            ▶️
+        </button>
+        <p class="description">
+            {{ "general_preview.description" | translate }}
+        </p>
+    </div>
+</div>
+
+<!-- Kategorisierte Videos -->
+<div *ngIf="otherCategories.length > 0; else noVideos" class="background">
+    <div *ngFor="let category of otherCategories" class="category-section">
         <h2>{{ getTranslationKey(category.name) | translate }}</h2>
         <div class="videos-container">
             <div
@@ -88,21 +55,60 @@
                         loop
                         playsinline
                         preload="none"></video>
+
                     <div class="overlay">
                         <button
-                            class="play-button"
-                            (click)="
-                                playVideo(video); $event.stopPropagation()
-                            ">
-                            ▶️
+                            class="btn btn-secondary btn-video-hover"
+                            (click)="playVideo(video); $event.stopPropagation()"
+                            aria-label="Play Video">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="12"
+                                height="12"
+                                fill="currentColor"
+                                class="bi bi-play-circle-fill"
+                                viewBox="0 0 16 16">
+                                <path
+                                    d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M6.79 5.093A.5.5 0 0 0 6 5.5v5a.5.5 0 0 0 .79.407l3.5-2.5a.5.5 0 0 0 0-.814z" />
+                            </svg>
                         </button>
                         <p class="description">{{ video.description }}</p>
-                        <button
+                        <!-- <button
                             class="sound-button"
                             (click)="
                                 toggleSound(video.id); $event.stopPropagation()
-                            ">
+                            "
+                            aria-label="Toggle Sound">
                             🔊
+                        </button> -->
+                        <button
+                            type="button"
+                            class="btn btn-secondary btn-video-hover"
+                            (click)="
+                                toggleSound(video.id); $event.stopPropagation()
+                            ">
+                            <svg
+                                *ngIf="!isMuted[video.id]"
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="12"
+                                height="12"
+                                fill="currentColor"
+                                class="bi bi-volume-mute-fill"
+                                viewBox="0 0 16 16">
+                                <path
+                                    d="M6.717 3.55A.5.5 0 0 1 7 4v8a.5.5 0 0 1-.812.39L3.825 10.5H1.5A.5.5 0 0 1 1 10V6a.5.5 0 0 1 .5-.5h2.325l2.363-1.89a.5.5 0 0 1 .529-.06m7.137 2.096a.5.5 0 0 1 0 .708L12.207 8l1.647 1.646a.5.5 0 0 1-.708.708L11.5 8.707l-1.646 1.647a.5.5 0 0 1-.708-.708L10.793 8 9.146 6.354a.5.5 0 1 1 .708-.708L11.5 7.293l1.646-1.647a.5.5 0 0 1 .708 0"></path>
+                            </svg>
+                            <svg
+                                *ngIf="isMuted[video.id]"
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="16"
+                                height="16"
+                                fill="currentColor"
+                                class="bi bi-volume-off-fill"
+                                viewBox="0 0 16 16">
+                                <path
+                                    d="M10.717 3.55A.5.5 0 0 1 11 4v8a.5.5 0 0 1-.812.39L7.825 10.5H5.5A.5.5 0 0 1 5 10V6a.5.5 0 0 1 .5-.5h2.325l2.363-1.89a.5.5 0 0 1 .529-.06"></path>
+                            </svg>
                         </button>
                     </div>
                 </div>
@@ -121,6 +127,11 @@
 <div #fullscreenContainer class="fullscreen-container" *ngIf="selectedVideo">
     <div class="video-container">
         <app-vjs-player [options]="videoOptions"></app-vjs-player>
-        <button class="close-button" (click)="closeVideo()">✖️</button>
+        <button
+            class="close-button"
+            (click)="closeVideo()"
+            aria-label="Close Video">
+            ✖️
+        </button>
     </div>
 </div>

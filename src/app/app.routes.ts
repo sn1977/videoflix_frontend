@@ -7,6 +7,8 @@ import { ActivateComponent } from "./components/activate/activate.component";
 import { PasswordResetRequestComponent } from "./components/password-reset-request/password-reset-request.component";
 import { PasswordResetComponent } from "./components/password-reset/password-reset.component";
 import { VideoPlayerComponent } from "./components/video-player/video-player.component";
+import { ImprintComponent } from "./imprint/imprint.component";
+import { PrivacyPolicyComponent } from "./privacy-policy/privacy-policy.component";
 
 export const routes: Routes = [
     { path: "", redirectTo: "home", pathMatch: "full" },
@@ -18,4 +20,6 @@ export const routes: Routes = [
     { path: "activate/:uidb64/:token", component: ActivateComponent },
     { path: 'password-reset-request', component: PasswordResetRequestComponent },
     { path: 'reset-password/:uidb64/:token', component: PasswordResetComponent },
+    { path: 'imprint', component: ImprintComponent},
+    { path: 'privacy-policy', component: PrivacyPolicyComponent}
 ];

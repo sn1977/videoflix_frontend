@@ -14,6 +14,7 @@ import { CommonModule } from "@angular/common";
 export class HeaderComponent {
     currentLanguage: string;
     showSignupButton: boolean = true;
+    showLogoutButton: boolean = true;
 
     constructor(
         private router: Router,
@@ -26,13 +27,20 @@ export class HeaderComponent {
     ngOnInit(): void {
         // Setze den initialen Wert von showSignupButton basierend auf der aktuellen URL
         const currentUrl = this.router.url;
-        const pathsToHideButton = [
+        const pathsToHideSignUpButton = [
             "register",
             "video_selection",
             "reset-password",
             "password-reset-request",
+            "imprint",
+            "privacy-policy",
         ];
-        this.showSignupButton = !pathsToHideButton.some((path) =>
+        this.showSignupButton = !pathsToHideSignUpButton.some((path) =>
+            currentUrl.includes(path)
+        );
+
+        const pathsToHideLogoutButton = ["login", "register", "imprint", "privacy-policy", "home"];
+        this.showLogoutButton = !pathsToHideLogoutButton.some((path) =>
             currentUrl.includes(path)
         );
         console.log(
@@ -58,5 +66,10 @@ export class HeaderComponent {
 
     register() {
         this.router.navigate(["/register"]);
+    }
+
+    logout() {
+        localStorage.removeItem("token");
+        this.router.navigate(["/login"]);
     }
 }

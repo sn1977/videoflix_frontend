@@ -181,6 +181,57 @@
 
 @import "../../../styles/mixins.scss";
 
+/* Allgemeines Preview-Video */
+.general-preview-wrapper {
+    position: relative;
+    width: 100%;
+    height: 60vh; /* Passt die Höhe nach Bedarf an */
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.general-preview-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.3s ease;
+    z-index: 1; /* Niedriger z-index, damit das Overlay darüber liegt */
+}
+
+.general-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    padding: 20px;
+    box-sizing: border-box;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 2; /* Über dem Video */
+}
+
+.general-preview-wrapper:hover .general-overlay {
+    opacity: 1;
+}
+
+.play-button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 2em;
+  cursor: pointer;
+}
+
+.description {
+  font-size: 1em;
+  margin-left: 10px;
+}
+
 .background {
     @include dFlex;
     min-height: 100vh; /* Bessere Responsiveness */
@@ -201,10 +252,44 @@
     }
 }
 
+/* Fullscreen-Overlay */
+// .fullscreen-container {
+//   position: fixed;
+//   top: 0;
+//   left: 0;
+//   width: 100vw;
+//   height: 100vh;
+//   background: rgba(0, 0, 0, 0.8);
+//   display: flex; /* Flexbox zur Zentrierung */
+//   align-items: center;
+//   justify-content: center;
+//   z-index: 1000; /* Hoher z-index, um über anderen Elementen zu liegen */
+// }
+
+// .video-container {
+//   position: relative;
+//   width: 100%;
+//   height: 100%;
+// }
+
+// .video-js {
+//   width: 100%;
+//   height: 100%;
+// }
+
 .videos-container {
     display: flex;
     flex-wrap: wrap;
-    gap: 16px; /* Abstand zwischen den Video-Items */
+    gap: 32px; /* Abstand zwischen den Video-Items */
+}
+
+.btn-video-hover {
+  @include dFlex($g: 8px);
+  font-size: 0.7rem;
+  height: 18px;
+  padding: 4px;
+  background-color: transparent;
+  border: #fff;
 }
 
 .video-item {
