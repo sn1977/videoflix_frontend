@@ -3,6 +3,7 @@ import { NavigationEnd, Router } from "@angular/router";
 import { TranslateModule } from "@ngx-translate/core";
 import { LanguageService } from "../../services/language.service";
 import { CommonModule } from "@angular/common";
+import { AuthService } from "../../services/auth.service";
 
 @Component({
     selector: "app-header",
@@ -18,6 +19,7 @@ export class HeaderComponent {
 
     constructor(
         private router: Router,
+        private authService: AuthService,
         private languageService: LanguageService,
         private cdr: ChangeDetectorRef
     ) {
@@ -39,7 +41,7 @@ export class HeaderComponent {
             currentUrl.includes(path)
         );
 
-        const pathsToHideLogoutButton = ["login", "register", "imprint", "privacy-policy", "home"];
+        const pathsToHideLogoutButton = ["login", "register", "imprint", "privacy-policy", "home", "password-reset-request", "reset-password"];
         this.showLogoutButton = !pathsToHideLogoutButton.some((path) =>
             currentUrl.includes(path)
         );
@@ -69,7 +71,8 @@ export class HeaderComponent {
     }
 
     logout() {
-        localStorage.removeItem("token");
+        // localStorage.removeItem("token");
+        this.authService.removeToken();
         this.router.navigate(["/login"]);
     }
 }

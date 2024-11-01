@@ -6,7 +6,7 @@
             {{ errorMessage }}
         </div>
         <h1>{{ "login" | translate }}</h1>
-        <form (ngSubmit)="login()">
+        <!-- <form (ngSubmit)="login()">
             <div class="mb-3 block">
                 <label for="emailOrUsername">{{
                     "usernameOrEmail" | translate
@@ -50,7 +50,49 @@
                 [disabled]="!isCheckboxChecked">
                 {{ "email.button" | translate }}
             </button>
-        </form>
+        </form> -->
+
+        <form (ngSubmit)="login()">
+          <div class="mb-3 block">
+              <label for="emailOrUsername">{{ "usernameOrEmail" | translate }}</label>
+              <input
+                  type="text"
+                  class="form-control"
+                  id="emailOrUsername"
+                  aria-describedby="emailHelp"
+                  placeholder="{{ 'usernameOrEmail.placeholder' | translate }}"
+                  required
+                  [(ngModel)]="emailOrUsername"
+                  name="emailOrUsername" />
+          </div>
+          <div class="mb-3 block">
+              <label for="password">{{ "password.label" | translate }}</label>
+              <input
+                  type="password"
+                  class="form-control"
+                  id="password"
+                  minlength="6"
+                  placeholder="{{ 'password.placeholder' | translate }}"
+                  required
+                  [(ngModel)]="password"
+                  name="password" />
+          </div>
+          <div class="mb-3 form-check">
+              <input
+                  type="checkbox"
+                  class="form-check-input"
+                  id="rememberMe"
+                  [(ngModel)]="rememberMe"
+                  name="rememberMe" />
+              <label class="form-check-label" for="rememberMe">{{ "rememberMe" | translate }}</label>
+          </div>
+          <button
+              type="submit"
+              class="btn btn-primary"
+              [disabled]="!isFormValid">
+              {{ "email.button" | translate }}
+          </button>
+      </form>
         <div class="login-footer">
             <p>
                 <a routerLink="/password-reset-request">{{

@@ -68,7 +68,7 @@
                         [(ngModel)]="password"
                         name="password" />
                 </div>
-                <div class="mb-3">
+                <div class="mb-3 block">
                     <input
                         type="password"
                         class="form-control"
@@ -79,7 +79,7 @@
                         required
                         [(ngModel)]="confirmPassword"
                         name="confirmPassword" />
-                    <div *ngIf="!passwordsEqual">
+                    <div *ngIf="!passwordsEqual" class="text-danger mt-1">
                         {{ "passwordDoesNotMatch" | translate }}
                     </div>
                 </div>
