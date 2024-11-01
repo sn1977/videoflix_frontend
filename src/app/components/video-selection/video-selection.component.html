@@ -2,7 +2,7 @@
 
 <!-- Allgemeines Preview-Video (PreviewVideo Kategorie) -->
 <div
-    *ngIf="previewCategory"
+    *ngIf="previewCategory && previewCategory.videos.length > 0"
     class="general-preview-wrapper"
     (mouseenter)="startGeneralPreview()"
     (mouseleave)="stopGeneralPreview()">
@@ -30,9 +30,18 @@
                     d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M6.79 5.093A.5.5 0 0 0 6 5.5v5a.5.5 0 0 0 .79.407l3.5-2.5a.5.5 0 0 0 0-.814z" />
             </svg>
         </button>
-        <p class="description">
-            {{ "general_preview.description" | translate }}
-        </p>
+        <p class="description">{{ previewCategory.videos[0].description }}</p>
+        <svg
+            *ngIf="isMuted[previewCategory.videos[0].id]"
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            fill="currentColor"
+            class="bi bi-volume-off-fill"
+            viewBox="0 0 16 16">
+            <path
+                d="M10.717 3.55A.5.5 0 0 1 11 4v8a.5.5 0 0 1-.812.39L7.825 10.5H5.5A.5.5 0 0 1 5 10V6a.5.5 0 0 1 .5-.5h2.325l2.363-1.89a.5.5 0 0 1 .529-.06"></path>
+        </svg>
     </div>
 </div>
 
@@ -82,14 +91,6 @@
                             </svg>
                         </button>
                         <p class="description">{{ video.description }}</p>
-                        <!-- <button
-                            class="sound-button"
-                            (click)="
-                                toggleSound(video.id); $event.stopPropagation()
-                            "
-                            aria-label="Toggle Sound">
-                            🔊
-                        </button> -->
                         <button
                             type="button"
                             class="btn btn-secondary btn-video-hover"
@@ -106,17 +107,6 @@
                                 viewBox="0 0 16 16">
                                 <path
                                     d="M6.717 3.55A.5.5 0 0 1 7 4v8a.5.5 0 0 1-.812.39L3.825 10.5H1.5A.5.5 0 0 1 1 10V6a.5.5 0 0 1 .5-.5h2.325l2.363-1.89a.5.5 0 0 1 .529-.06m7.137 2.096a.5.5 0 0 1 0 .708L12.207 8l1.647 1.646a.5.5 0 0 1-.708.708L11.5 8.707l-1.646 1.647a.5.5 0 0 1-.708-.708L10.793 8 9.146 6.354a.5.5 0 1 1 .708-.708L11.5 7.293l1.646-1.647a.5.5 0 0 1 .708 0"></path>
-                            </svg>
-                            <svg
-                                *ngIf="isMuted[video.id]"
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="16"
-                                height="16"
-                                fill="currentColor"
-                                class="bi bi-volume-off-fill"
-                                viewBox="0 0 16 16">
-                                <path
-                                    d="M10.717 3.55A.5.5 0 0 1 11 4v8a.5.5 0 0 1-.812.39L7.825 10.5H5.5A.5.5 0 0 1 5 10V6a.5.5 0 0 1 .5-.5h2.325l2.363-1.89a.5.5 0 0 1 .529-.06"></path>
                             </svg>
                         </button>
                     </div>
