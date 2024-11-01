@@ -234,7 +234,8 @@
 
 .background {
     @include dFlex;
-    min-height: 100vh; /* Bessere Responsiveness */
+    // min-height: 100vh; /* Bessere Responsiveness */
+    min-height: calc(100vh - 300px);
     background-position: center;
     background-color: rgba(0, 0, 0, 0.9);
     flex-direction: column;

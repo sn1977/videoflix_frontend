@@ -2,7 +2,8 @@
 
 .background {
     @include dFlex;
-    height: 100vh;
+    // height: 100vh;
+    min-height: calc(100vh - 300px);
     background-image: url("../../../assets/img/background_img.webp");
     background-repeat: no-repeat;
     background-size: cover;
@@ -27,7 +28,7 @@ h1 {
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Adds a shadow for better visibility */
     width: 50vw;
-    height: 50vh;
+    // height: 50vh;
     color: #fff;
 
     .block {
