@@ -109,45 +109,6 @@ export class VideoSelectionComponent
         console.log("Other Categories:", this.otherCategories);
     }
 
-  //   playVideo(video: Video): void {
-  //     this.selectedVideo = video;
-  //     this.setVideoOptions(video.video_file);
-  
-  //     // Vollbild-Anfrage synchron im Klick-Handler
-  //     if (this.fullscreenContainer && this.fullscreenContainer.nativeElement) {
-  //         const containerElement = this.fullscreenContainer.nativeElement;
-  
-  //         // Vollbild anfordern
-  //         const promise =
-  //             containerElement.requestFullscreen?.() ||
-  //             (containerElement as any).webkitRequestFullscreen?.() ||
-  //             (containerElement as any).mozRequestFullScreen?.() ||
-  //             (containerElement as any).msRequestFullscreen?.();
-  
-  //         if (promise) {
-  //             promise.then(() => {
-  //                 // Video abspielen, nachdem der Vollbildmodus aktiviert wurde
-  //                 const videoElement = document.getElementById('video-element-id') as HTMLVideoElement;
-  //                 if (videoElement) {
-  //                     videoElement.play();
-  //                 }
-  //             }).catch((err) => {
-  //                 console.error("Fullscreen request failed:", err);
-  //                 // Optional: Feedback an den Benutzer geben, z.B. eine Meldung anzeigen
-  //             });
-  //         } else {
-  //             // Fallback: Video sofort abspielen, wenn die Vollbildanforderung nicht unterstützt wird
-  //             const videoElement = document.getElementById('video-element-id') as HTMLVideoElement;
-  //             if (videoElement) {
-  //                 videoElement.play();
-  //             }
-  //         }
-  
-  //         // Füge eine Klasse hinzu, um das Overlay sichtbar zu machen
-  //         this.renderer.addClass(containerElement, 'active');
-  //     }
-  // }
-
     setVideoOptions(src: string): void {
         this.videoOptions = {
             fluid: true,
