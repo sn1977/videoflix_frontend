@@ -6,7 +6,7 @@
             {{ errorMessage }}
         </div>
         <h1>{{ "login" | translate }}</h1>
-        <!-- <form (ngSubmit)="login()">
+        <form (ngSubmit)="login()">
             <div class="mb-3 block">
                 <label for="emailOrUsername">{{
                     "usernameOrEmail" | translate
@@ -14,20 +14,21 @@
                 <input
                     type="text"
                     class="form-control"
-                    id="exampleInputEmail1"
+                    id="emailOrUsername"
                     aria-describedby="emailHelp"
                     placeholder="{{
                         'usernameOrEmail.placeholder' | translate
-                    }} "
+                    }}"
                     required
                     [(ngModel)]="emailOrUsername"
                     name="emailOrUsername" />
             </div>
-            <div class="mb-3">
+            <div class="mb-3 block">
+                <label for="password">{{ "password.label" | translate }}</label>
                 <input
                     type="password"
                     class="form-control"
-                    id="exampleInputPassword1"
+                    id="password"
                     minlength="6"
                     placeholder="{{ 'password.placeholder' | translate }}"
                     required
@@ -38,61 +39,20 @@
                 <input
                     type="checkbox"
                     class="form-check-input"
-                    id="exampleCheck1"
-                    (change)="toggleSubmitButton($event)" />
-                <label class="form-check-label" for="exampleCheck1"
-                    >Remember me</label
-                >
+                    id="rememberMe"
+                    [(ngModel)]="rememberMe"
+                    name="rememberMe" />
+                <label class="form-check-label" for="rememberMe">{{
+                    "rememberMe" | translate
+                }}</label>
             </div>
             <button
                 type="submit"
                 class="btn btn-primary"
-                [disabled]="!isCheckboxChecked">
+                [disabled]="!isFormValid">
                 {{ "email.button" | translate }}
             </button>
-        </form> -->
-
-        <form (ngSubmit)="login()">
-          <div class="mb-3 block">
-              <label for="emailOrUsername">{{ "usernameOrEmail" | translate }}</label>
-              <input
-                  type="text"
-                  class="form-control"
-                  id="emailOrUsername"
-                  aria-describedby="emailHelp"
-                  placeholder="{{ 'usernameOrEmail.placeholder' | translate }}"
-                  required
-                  [(ngModel)]="emailOrUsername"
-                  name="emailOrUsername" />
-          </div>
-          <div class="mb-3 block">
-              <label for="password">{{ "password.label" | translate }}</label>
-              <input
-                  type="password"
-                  class="form-control"
-                  id="password"
-                  minlength="6"
-                  placeholder="{{ 'password.placeholder' | translate }}"
-                  required
-                  [(ngModel)]="password"
-                  name="password" />
-          </div>
-          <div class="mb-3 form-check">
-              <input
-                  type="checkbox"
-                  class="form-check-input"
-                  id="rememberMe"
-                  [(ngModel)]="rememberMe"
-                  name="rememberMe" />
-              <label class="form-check-label" for="rememberMe">{{ "rememberMe" | translate }}</label>
-          </div>
-          <button
-              type="submit"
-              class="btn btn-primary"
-              [disabled]="!isFormValid">
-              {{ "email.button" | translate }}
-          </button>
-      </form>
+        </form>
         <div class="login-footer">
             <p>
                 <a routerLink="/password-reset-request">{{
