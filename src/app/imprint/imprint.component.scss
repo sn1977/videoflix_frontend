@@ -3,7 +3,6 @@
 
 .background {
   @include dFlex($ai: flex-start);
-  // min-height: 100vh; /* Bessere Responsiveness */
   min-height: calc(100vh - 300px);
   background-position: center;
   background-color: rgba(0, 0, 0, 0.9);
@@ -12,8 +11,6 @@
 }
 
 .imprint-container {
-  // height: 800px;
-  // padding: 200px 100px 0 100px;
   position: relative;
   padding-left: 150px;
   padding-right: 100px;
@@ -27,8 +24,11 @@
 }
 
 .container {
-  // position: relative; /* Ermöglicht die absolute Positionierung des Buttons innerhalb dieses Containers */
-  // margin: 0;
+  font-size: 1em;
+
+  p {
+    font-size: 0.7em;
+  }
 }
 
 .close-button {
@@ -62,12 +62,18 @@
   }
 }
 
+@media (max-width: 768px) {
+  .close-button {
+      right: 30px;
+  }
+}
+
 @media (max-width: 400px) {
   h1 {
       font-size: 1.5em;
   }
 
-  p {
-      font-size: 0.8em;
+  .container {
+      font-size: 0.7em;
   }
 }

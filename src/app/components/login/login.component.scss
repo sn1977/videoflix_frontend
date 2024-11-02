@@ -2,7 +2,6 @@
 
 .background {
     @include dFlex;
-    // height: 100vh;
     min-height: calc(100vh - 300px);
     background-image: url("../../../assets/img/background_img.webp");
     background-repeat: no-repeat;

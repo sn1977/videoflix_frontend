@@ -2,7 +2,7 @@
 
 .background {
     @include dFlex;
-    height: 100vh;
+    height: calc(100vh - 300px);
     background-image: url("/assets/img/videoflix_and_chill.webp");
     background-repeat: no-repeat;
     background-size: cover;
@@ -72,4 +72,16 @@ h1 {
     button {
         width: 100%;
     }
+}
+
+@media (max-width: 768px) {
+  .login-form {
+      width: 80vw;
+  }
+}
+
+@media (max-width: 576px) {
+  .login-form {
+      width: 90vw;
+  }
 }
