@@ -71,7 +71,7 @@
     margin-bottom: 40px;
     padding-left: 150px;
     width: 100vw;
-    height: 300px;
+    height: 400px;
 
     h2 {
         color: #fff;
@@ -94,7 +94,7 @@
 }
 
 .video-item {
-    width: 200px; /* Initiale Breite */
+    width: 250px; /* Initiale Breite */
     cursor: pointer;
     text-align: center;
     transition: transform 0.3s ease; /* Sanfte Animation beim Hover */
@@ -108,8 +108,8 @@
 
 .thumbnail-wrapper {
     position: relative; /* Ermöglicht die Überlagerung von Video und Bild */
-    width: 200px;
-    height: 120px;
+    width: 250px;
+    height: 150px;
     overflow: hidden; /* Verhindert das Überlaufen von Video */
 }
 
