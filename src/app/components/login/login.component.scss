@@ -94,3 +94,15 @@ h1 {
         font-weight: bold;
     }
 }
+
+@media (max-width: 768px) {
+    .login-form {
+        width: 80vw;
+    }
+}
+
+@media (max-width: 576px) {
+    .login-form {
+        width: 90vw;
+    }
+}
