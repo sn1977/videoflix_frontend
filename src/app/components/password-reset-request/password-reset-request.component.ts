@@ -35,6 +35,13 @@ export class PasswordResetRequestComponent {
         this.currentLanguage = this.languageService.getCurrentLanguage();
     }
 
+    /**
+     * Handles the form submission for requesting a password reset.
+     *
+     * This method sends a password reset request using the provided email address.
+     * On a successful response, it sets the message property with the response message.
+     * If an error occurs, it sets the errorMessage property with a generic error message.
+     */
     onSubmit() {
         this.authService.requestPasswordReset(this.email).subscribe({
             next: (response: any) => {
