@@ -24,6 +24,14 @@ export class HomeComponent {
         this.currentLanguage = this.languageService.getCurrentLanguage();
     }
 
+    /**
+     * Navigates to the login page with the current email as a query parameter.
+     * 
+     * @remarks
+     * This method is triggered upon form submission.
+     * 
+     * @returns void
+     */
     onSubmit() {
         this.router.navigate(["/login/"], {
             queryParams: { email: this.email },
