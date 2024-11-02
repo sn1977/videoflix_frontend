@@ -54,3 +54,21 @@
     }
 }
 }
+
+@media (max-width: 615px) {
+    .column {
+        flex-direction: column !important;
+    }
+}
+
+@media (max-width: 535px) {
+    .btn {
+        width: 30% !important;
+    }
+}
+
+@media (max-width: 390px) {
+  .btn {
+      width: 40% !important;
+  }
+}
