@@ -44,7 +44,6 @@
   background: none;
   border: none;
   color: white;
-  // font-size: 2em;
   cursor: pointer;
 }
 
@@ -59,7 +58,6 @@
 
 .background {
     @include dFlex;
-    // min-height: 100vh; /* Bessere Responsiveness */
     min-height: calc(100vh - 300px);
     background-position: center;
     background-color: rgba(0, 0, 0, 0.9);
@@ -70,8 +68,11 @@
 .category-section {
     margin-bottom: 40px;
     padding-left: 150px;
+    padding-right: 150px;
     width: 100vw;
-    height: 400px;
+    // height: 400px;
+    display: flex;
+    // justify-content: center;
 
     h2 {
         color: #fff;
@@ -91,6 +92,11 @@
   padding: 4px;
   background-color: transparent;
   border: #fff;
+
+   svg {
+            width: 16px;
+            height: 16px;
+   }   
 }
 
 .video-item {
@@ -136,20 +142,6 @@
 }
 
 .overlay {
-    // width: 200px; /* Anfangs gleiche Breite wie das Thumbnail */
-    // background-color: rgba(0, 0, 0, 0.7); /* Transparenter schwarzer Hintergrund */
-    // color: white;
-    // padding: 10px;
-    // box-sizing: border-box;
-    // opacity: 0; /* Versteckt */
-    // transition: opacity 0.3s ease, width 0.3s ease; /* Sanfte Einblendung und Breitenänderung */
-    // display: flex;
-    // align-items: center;
-    // justify-content: space-between;
-    // margin-top: -4px; /* Abstand zum Thumbnail */
-    // border-bottom-left-radius: 8px;
-    // border-bottom-right-radius: 8px;
-    // z-index: 10; /* Stellt sicher, dass das Overlay über anderen Elementen liegt */
     position: absolute;
     bottom: 0;
     left: 0;
@@ -170,8 +162,6 @@
 
 .thumbnail-wrapper:hover .overlay {
     opacity: 1; /* Zeigt Overlay bei Hover */
-    // width: 300px; /* Breite an vergrößertes Thumbnail anpassen */
-    // height: 200px;
 }
 
 .play-button,
@@ -196,7 +186,7 @@ h2 {
 /* Responsive Design */
 @media (max-width: 768px) {
     .category-section {
-        padding-left: 32px;
+        padding-left: 88px;
     }
 
     .video-item {
@@ -222,11 +212,23 @@ h2 {
     }
 
     .thumbnail-wrapper:hover .overlay {
-        width: 180px;
+        width: 150px;
     }
 
     .description {
-        font-size: 0.8em;
+        font-size: 0.5em !important;
+    }
+
+    .btn-video-hover{
+        svg {
+      width: 12px;
+      height: 12px;
     }
 }
+}
 
+@media (max-width: 330px) {
+  .video-item:hover {
+    transform: scale(1.7);
+}
+}

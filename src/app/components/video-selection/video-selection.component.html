@@ -48,6 +48,7 @@
 <!-- Kategorisierte Videos -->
 <div *ngIf="otherCategories.length > 0; else noVideos" class="background">
     <div *ngFor="let category of otherCategories" class="category-section">
+      <div>
         <h2>{{ getTranslationKey(category.name) | translate }}</h2>
         <div class="videos-container">
             <div
@@ -69,7 +70,7 @@
                         id="preview-video-{{ video.id }}"
                         class="video-preview"
                         [src]="video.video_file"
-                        muted
+                        [muted]="isMuted[video.id]"
                         loop
                         playsinline
                         preload="none"></video>
@@ -81,8 +82,8 @@
                             aria-label="Play Video">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
-                                width="16"
-                                height="16"
+                                
+                                
                                 fill="currentColor"
                                 class="bi bi-play-circle-fill"
                                 viewBox="0 0 16 16">
@@ -103,8 +104,8 @@
                                 <svg
                                     *ngIf="!isMuted[video.id]"
                                     xmlns="http://www.w3.org/2000/svg"
-                                    width="16"
-                                    height="16"
+                                    
+
                                     fill="currentColor"
                                     class="bi bi-volume-mute-fill"
                                     viewBox="0 0 16 16">
@@ -114,8 +115,8 @@
                                 <svg
                                     *ngIf="isMuted[video.id]"
                                     xmlns="http://www.w3.org/2000/svg"
-                                    width="16"
-                                    height="16"
+                                    
+
                                     fill="currentColor"
                                     class="bi bi-volume-off-fill"
                                     viewBox="0 0 16 16">
@@ -128,6 +129,7 @@
                 </div>
             </div>
         </div>
+      </div>
     </div>
 </div>
 

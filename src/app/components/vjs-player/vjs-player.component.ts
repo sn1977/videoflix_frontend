@@ -102,11 +102,11 @@ export class VjsPlayerComponent implements OnInit, OnDestroy {
     }
   }
 
-  toggleSound(): void {
-    if (this.player) {
-      const isMuted = this.player.muted();
-      this.player.muted(!isMuted);
-      console.log(`Sound toggled to: ${!isMuted ? 'Muted' : 'Unmuted'}`);
-    }
-  }
+  // toggleSound(): void {
+  //   if (this.player) {
+  //     const isMuted = this.player.muted();
+  //     this.player.muted(!isMuted);
+  //     console.log(`Sound toggled to: ${!isMuted ? 'Muted' : 'Unmuted'}`);
+  //   }
+  // }
 }

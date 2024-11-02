@@ -190,9 +190,9 @@ onFullScreenChange(event: any): void {
     }
 
     toggleSound(videoId: number): void {
-        if (this.videoPlayerComponent) {
-            this.videoPlayerComponent.toggleSound();
-        }
+        // if (this.videoPlayerComponent) {
+        //     this.videoPlayerComponent.toggleSound();
+        // }
         console.log("Toggle sound for video ID:", videoId);
         this.isMuted[videoId] = !this.isMuted[videoId]; // Zustand des Icons umschalten
     }
