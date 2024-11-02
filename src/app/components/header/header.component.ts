@@ -26,6 +26,13 @@ export class HeaderComponent {
         this.currentLanguage = this.languageService.getCurrentLanguage();
     }
 
+    /**
+     * Initializes the component by setting the initial values for `showSignupButton` and `showLogoutButton`
+     * based on the current URL. Subscribes to router events to update the visibility of the signup button
+     * on navigation changes.
+     *
+     * @returns {void}
+     */
     ngOnInit(): void {
         // Setze den initialen Wert von showSignupButton basierend auf der aktuellen URL
         const currentUrl = this.router.url;
@@ -62,16 +69,31 @@ export class HeaderComponent {
         });
     }
 
+    /**
+     * Switches the application's language to the specified language.
+     * 
+     * @param language - The language code to switch to (e.g., 'en', 'de').
+     */
     switchLanguage(language: string) {
         this.languageService.switchLanguage(language);
     }
 
+    /**
+     * Navigates the user to the registration page.
+     * This method uses the router to change the current route to "/register".
+     */
     register() {
         this.router.navigate(["/register"]);
     }
 
+    /**
+     * Logs out the current user by removing the authentication token and navigating to the login page.
+     * 
+     * @remarks
+     * This method calls the `removeToken` method of the `authService` to clear the user's authentication token.
+     * After the token is removed, it navigates the user to the login page using the `router`.
+     */
     logout() {
-        // localStorage.removeItem("token");
         this.authService.removeToken();
         this.router.navigate(["/login"]);
     }

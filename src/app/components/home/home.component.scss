@@ -2,7 +2,6 @@
 
 .background {
     @include dFlex;
-    // height: 100vh;
     min-height: calc(100vh - 300px);
     background-image: url("../../../assets/img/background_img.webp");
     background-repeat: no-repeat;
@@ -39,20 +38,20 @@
         }
 
         form {
-          width: 100%;
-          @include dFlex();
+            width: 100%;
+            @include dFlex();
         }
 
         .mb-3 {
-          @include dFlex($g: 16px);
-          width: 80%;
-          padding-top: 24px;
+            @include dFlex($g: 16px);
+            width: 80%;
+            padding-top: 24px;
 
-          button {
-            width: 20%;
-          }
+            button {
+                width: 20%;
+            }
+        }
     }
-}
 }
 
 @media (max-width: 615px) {
@@ -68,7 +67,7 @@
 }
 
 @media (max-width: 390px) {
-  .btn {
-      width: 40% !important;
-  }
+    .btn {
+        width: 40% !important;
+    }
 }
