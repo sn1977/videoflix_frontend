@@ -36,11 +36,30 @@ export class PasswordResetComponent implements OnInit {
         private languageService: LanguageService
     ) {}
 
+    /**
+     * Initializes the component by extracting the 'uidb64' and 'token' parameters from the route's snapshot.
+     * This method is called once the component has been initialized.
+     * 
+     * @returns {void}
+     */
     ngOnInit(): void {
         this.uidb64 = this.route.snapshot.paramMap.get("uidb64")!;
         this.token = this.route.snapshot.paramMap.get("token")!;
     }
 
+    /**
+     * Handles the form submission for password reset.
+     * 
+     * This method checks if the password and confirm password fields match.
+     * If they do not match, it sets an error message and exits.
+     * If they match, it calls the resetPassword method of the authService
+     * with the provided uidb64, token, and password.
+     * 
+     * On successful password reset, it sets a success message and optionally
+     * redirects the user to the login page after a short delay.
+     * 
+     * On error, it sets an error message indicating that an error occurred.
+     */
     onSubmit() {
         if (this.password !== this.confirmPassword) {
             this.errorMessage = "Passwords do not match.";
@@ -51,7 +70,6 @@ export class PasswordResetComponent implements OnInit {
             .subscribe({
                 next: (response: any) => {
                     this.message = response.message;
-                    // Optional: Weiterleitung zur Login-Seite
                     setTimeout(() => {
                         this.router.navigate(["/login"]);
                     }, 2000);
