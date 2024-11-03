@@ -78,7 +78,6 @@ export class RegistryComponent {
                 this.errorMessage = "Registration failed";
             }
         } else {
-            console.log("Passwords do not match");
             this.errorMessage = "Passwords do not match";
         }
     }
