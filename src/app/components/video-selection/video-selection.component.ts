@@ -352,7 +352,7 @@ onFullScreenChange(event: any): void {
         }
     }
 
-    // ngOnDestroy(): void {
-    //     // VideoPlayer-Komponente kümmert sich um die Entsorgung des Players
-    // }
+    ngOnDestroy(): void {
+        // VideoPlayer-Komponente kümmert sich um die Entsorgung des Players
+    }
 }
