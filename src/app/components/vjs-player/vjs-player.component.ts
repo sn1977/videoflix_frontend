@@ -1,112 +1,77 @@
-// import { Component, ElementRef, Input, OnDestroy, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
-// import videojs from 'video.js';
-
-// @Component({
-//   selector: 'app-vjs-player',
-//   template: `
-//     <video #target class="video-js" controls muted playsinline preload="none"></video>
-//   `,
-//   styleUrls: [
-//     './vjs-player.component.scss'
-//   ],
-//   encapsulation: ViewEncapsulation.None,
-//   standalone: true,
-// })
-// export class VjsPlayerComponent implements OnInit, OnDestroy {
-//   @ViewChild('target', { static: true }) target!: ElementRef;
-
-//   // See options: https://videojs.com/guides/options
-//   @Input() options!: {
-//     fluid: boolean,
-//     aspectRatio: string,
-//     autoplay: boolean,
-//     sources: {
-//       src: string,
-//       type: string,
-//     }[],
-//   };
-//   player: any;
-
-//   // player!: videojs.Player;
-
-//   constructor(
-//     private elementRef: ElementRef,
-//   ) { }
-
-//   // Instantiate a Video.js player OnInit
-//   ngOnInit() {
-//     this.player = videojs(this.target.nativeElement, this.options, function onPlayerReady() {
-//       console.log('onPlayerReady', this);
-//     });
-//   }
-
-//   // Dispose the player OnDestroy
-//   ngOnDestroy() {
-//     if (this.player) {
-//       this.player.dispose();
-//     }
-//   }
-
-//   // toggleSound(): void {
-//   //   if (this.player) {
-//   //     const isMuted = this.player.muted();
-//   //     this.player.muted(!isMuted);
-//   //     console.log(`Sound toggled to: ${!isMuted ? 'Muted' : 'Unmuted'}`);
-//   //   }
-//   // }
-// }
-
-
-import { Component, ElementRef, Input, OnDestroy, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
-import videojs from 'video.js';
+import {
+    Component,
+    ElementRef,
+    Input,
+    OnDestroy,
+    OnInit,
+    ViewChild,
+    ViewEncapsulation,
+} from "@angular/core";
+import videojs from "video.js";
 
 @Component({
-  selector: 'app-vjs-player',
-  template: `
-    <video #target class="video-js" controls muted playsinline preload="none"></video>
-  `,
-  styleUrls: [
-    './vjs-player.component.scss'
-  ],
-  encapsulation: ViewEncapsulation.None,
-  standalone: true,
+    selector: "app-vjs-player",
+    template: `
+        <video
+            #target
+            class="video-js"
+            controls
+            muted
+            playsinline
+            preload="none"></video>
+    `,
+    styleUrls: ["./vjs-player.component.scss"],
+    encapsulation: ViewEncapsulation.None,
+    standalone: true,
 })
 export class VjsPlayerComponent implements OnInit, OnDestroy {
-  @ViewChild('target', { static: true }) target!: ElementRef;
+    @ViewChild("target", { static: true }) target!: ElementRef;
 
-  @Input() options!: {
-    fluid: boolean,
-    aspectRatio: string,
-    autoplay: boolean,
-    muted: boolean,
-    sources: {
-      src: string,
-      type: string,
-    }[],
-  };
+    /**
+     * Input property that defines the configuration options for the video player.
+     * 
+     * @property {boolean} fluid - Determines if the player should resize automatically.
+     * @property {string} aspectRatio - Specifies the aspect ratio of the player (e.g., '16:9').
+     * @property {boolean} autoplay - Indicates whether the video should start playing automatically.
+     * @property {boolean} muted - Indicates whether the video should be muted by default.
+     * @property {Array<{src: string, type: string}>} sources - An array of source objects, each containing the source URL and type of the video.
+     */
+    @Input() options!: {
+        fluid: boolean;
+        aspectRatio: string;
+        autoplay: boolean;
+        muted: boolean;
+        sources: {
+            src: string;
+            type: string;
+        }[];
+    };
 
-  player: any;
+    player: any;
 
-  constructor(private elementRef: ElementRef) {}
+    constructor(private elementRef: ElementRef) {}
 
-  ngOnInit() {
-    console.log('Initializing Video.js Player with options:', this.options);
-    this.player = videojs(this.target.nativeElement, this.options, () => {
-      console.log('Video.js player is ready');
-    });
-  }
-
-  ngOnDestroy() {
-    if (this.player) {
-      this.player.dispose();
+    /**
+     * Initializes the video.js player instance when the component is initialized.
+     * This method is called once, after the first ngOnChanges.
+     * 
+     * @memberof VjsPlayerComponent
+     */
+    ngOnInit() {
+        this.player = videojs(
+            this.target.nativeElement,
+            this.options,
+            () => {}
+        );
     }
-  }
 
-  // toggleSound(): void {
-  //   if (this.player) {
-  //     const isMuted = this.player.muted();
-  //     this.player.muted(!isMuted);
-  //     console.log(`Sound toggled to: ${!isMuted ? 'Muted' : 'Unmuted'}`);
-  //   }
-  // }
+    /**
+     * Lifecycle hook that is called when the component is destroyed.
+     * Disposes of the video player instance to clean up resources and avoid memory leaks.
+     */
+    ngOnDestroy() {
+        if (this.player) {
+            this.player.dispose();
+        }
+    }
 }
