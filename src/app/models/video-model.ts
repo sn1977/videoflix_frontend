@@ -5,8 +5,8 @@ export interface Video {
   created_at: Date;
   video_file: string;
   hls_url: string;
-  thumbnail: string;       // Hinzugefügt
-  category: Category;      // Hinzugefügt
+  thumbnail: string;      
+  category: Category;      
 }
 
 export interface Category {
