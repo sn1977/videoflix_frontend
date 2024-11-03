@@ -12,11 +12,22 @@ export class LanguageService {
     this.translateService.use(this.currentLanguage);
   }
 
+  /**
+   * Switches the current language of the application.
+   * 
+   * @param language - The language code to switch to (e.g., 'en', 'fr', 'es').
+   * @returns void
+   */
   switchLanguage(language: string) {
     this.currentLanguage = language;
     this.translateService.use(language);
   }
 
+  /**
+   * Retrieves the current language setting.
+   * 
+   * @returns {string} The current language.
+   */
   getCurrentLanguage(): string {
     return this.currentLanguage;
   }
