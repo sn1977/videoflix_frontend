@@ -19,7 +19,6 @@ import { CommonModule } from "@angular/common";
 import { FooterComponent } from "../footer/footer.component";
 import { Router } from "@angular/router";
 import { VjsPlayerComponent } from "../vjs-player/vjs-player.component"; // Importiere VideoPlayer-Komponente
-import { log } from "console";
 
 @Component({
     selector: "app-video-selection",
@@ -47,6 +46,12 @@ export class VideoSelectionComponent
     videoOptions: any; // Optionen für die VideoPlayer-Komponente
     isMuted: { [key: number]: boolean } = {}; // Stummschaltung für jedes Video
 
+    /**
+     * A reference to the fullscreen container element in the template.
+     * This element is used to display video content in fullscreen mode.
+     * 
+     * @type {ElementRef<HTMLDivElement>}
+     */
     @ViewChild("fullscreenContainer")
     fullscreenContainer!: ElementRef<HTMLDivElement>;
     @ViewChild(VjsPlayerComponent) videoPlayerComponent!: VjsPlayerComponent; // Referenz zur VideoPlayer-Komponente
@@ -61,28 +66,52 @@ export class VideoSelectionComponent
         this.currentLanguage = this.languageService.getCurrentLanguage();
     }
 
+    /**
+     * Lifecycle hook that is called after data-bound properties of a directive are initialized.
+     * Initializes the component by loading the categories.
+     * 
+     * @see https://angular.io/api/core/OnInit#ngOnInit
+     */
     ngOnInit(): void {
-        console.log("ngOnInit: Laden der Kategorien...");
         this.loadCategories();
     }
 
+    /**
+     * Lifecycle hook that is called after a component's view has been fully initialized.
+     * This method is used to set video options if a video has been selected.
+     * 
+     * @remarks
+     * This method is part of Angular's component lifecycle hooks.
+     * 
+     * @see {@link https://angular.io/guide/lifecycle-hooks#afterviewinit | ngAfterViewInit}
+     */
     ngAfterViewInit(): void {
-        // Initialisierung des Players, falls ein Video bereits ausgewählt ist
         if (this.selectedVideo) {
             this.setVideoOptions(this.selectedVideo.video_file);
         }
     }
 
+    /**
+     * Generates a translation key for a given category name.
+     * The key is formatted as `video_selection.{categoryName}` in lowercase.
+     *
+     * @param categoryName - The name of the category to generate the translation key for.
+     * @returns The formatted translation key.
+     */
     getTranslationKey(categoryName: string): string {
         return `video_selection.${categoryName.toLowerCase()}`;
     }
 
+    /**
+     * Loads the video categories from the video service and assigns them to the component's categories property.
+     * If an error occurs during the loading process, it logs the error to the console and sets an error message.
+     *
+     * @returns {void}
+     */
     loadCategories(): void {
         this.videoService.getCategories().subscribe({
             next: (categories: Category[]) => {
-                console.log("API-Antwort Kategorien:", categories);
                 this.categories = categories;
-                console.log("Categories:", this.categories);
                 this.separatePreviewCategory();
             },
             error: (error) => {
@@ -92,6 +121,14 @@ export class VideoSelectionComponent
         });
     }
 
+    /**
+     * Separates the "PreviewVideo" category from the list of categories.
+     * 
+     * This method finds the category with the name "PreviewVideo" and assigns it to `this.previewCategory`.
+     * All other categories are assigned to `this.otherCategories`.
+     * 
+     * @returns {void}
+     */
     separatePreviewCategory(): void {
         console.log(
             "separatePreviewCategory: Trennen der PreviewVideo-Kategorie..."
@@ -104,11 +141,20 @@ export class VideoSelectionComponent
         this.otherCategories = this.categories.filter(
             (category) => category.name !== "PreviewVideo"
         );
-
-        console.log("Preview Category:", this.previewCategory);
-        console.log("Other Categories:", this.otherCategories);
     }
 
+    /**
+     * Sets the video options for the video player.
+     *
+     * @param src - The source URL of the video.
+     *
+     * This method configures the video player with the following options:
+     * - `fluid`: Enables responsive layout.
+     * - `aspectRatio`: Sets the aspect ratio of the video player.
+     * - `autoplay`: Enables automatic playback of the video.
+     * - `muted`: Mutes the video to allow autoplay.
+     * - `sources`: An array containing the video source object with `src` and `type` properties.
+     */
     setVideoOptions(src: string): void {
         this.videoOptions = {
             fluid: true,
@@ -122,11 +168,16 @@ export class VideoSelectionComponent
                 },
             ],
         };
-        console.log("Set Video Options:", this.videoOptions);
     }
 
+  /**
+   * Plays the selected video by setting it as the current video and configuring video options.
+   * Requests fullscreen mode for the video container with a minimal delay to ensure rendering.
+   *
+   * @param video - The video object to be played.
+   * @returns void
+   */
   playVideo(video: Video): void {
-    console.log("playVideo: Video wird abgespielt:", video.title);
     this.selectedVideo = video;
     this.setVideoOptions(video.video_file);
 
@@ -161,15 +212,22 @@ onFullScreenChange(event: any): void {
                          (document as any).webkitFullscreenElement ||
                          (document as any).mozFullScreenElement ||
                          (document as any).msFullscreenElement;
-    
-    console.log("onFullScreenChange: Fullscreen-Status geändert. Ist Vollbild:", !!isFullscreen);
-    
+       
     if (!isFullscreen) {
-        console.log("onFullScreenChange: Vollbildmodus verlassen.");
         this.closeVideo();
     }
 }
 
+    /**
+     * Closes the currently selected video and exits fullscreen mode if active.
+     * 
+     * This method performs the following actions:
+     * 1. Exits fullscreen mode if the document is currently in fullscreen.
+     * 2. Sets the selected video and video options to null.
+     * 3. Removes the "active" class from the fullscreen container element if it exists.
+     * 
+     * @returns {void}
+     */
     closeVideo(): void {
         if (document.fullscreenElement) {
             document.exitFullscreen().catch((err) => {
@@ -189,19 +247,23 @@ onFullScreenChange(event: any): void {
         }
     }
 
+    /**
+     * Toggles the sound for a given video.
+     *
+     * @param videoId - The ID of the video for which to toggle the sound.
+     * @returns void
+     */
     toggleSound(videoId: number): void {
-        // if (this.videoPlayerComponent) {
-        //     this.videoPlayerComponent.toggleSound();
-        // }
-        console.log("Toggle sound for video ID:", videoId);
-        this.isMuted[videoId] = !this.isMuted[videoId]; // Zustand des Icons umschalten
+        this.isMuted[videoId] = !this.isMuted[videoId]; // Toggle Stummschaltung
     }
 
-    
-
-    // Methoden zur Steuerung des Video-Previews
+    /**
+     * Starts the preview of a video by playing the video element with the given video ID.
+     *
+     * @param videoId - The ID of the video to start the preview for.
+     * @returns void
+     */
     startPreview(videoId: number): void {
-        console.log(`Start Preview for Video ID: ${videoId}`);
         const videoElement = document.getElementById(
             `preview-video-${videoId}`
         ) as HTMLVideoElement;
@@ -210,8 +272,13 @@ onFullScreenChange(event: any): void {
         }
     }
 
+    /**
+     * Stops the preview of a video by pausing it and resetting its current time to 0.
+     * 
+     * @param videoId - The unique identifier of the video to stop the preview for.
+     * @returns void
+     */
     stopPreview(videoId: number): void {
-        console.log(`Stop Preview for Video ID: ${videoId}`);
         const videoElement = document.getElementById(
             `preview-video-${videoId}`
         ) as HTMLVideoElement;
@@ -221,8 +288,16 @@ onFullScreenChange(event: any): void {
         }
     }
 
+    /**
+     * Plays the general preview video and attempts to request fullscreen mode.
+     * 
+     * This method selects the video element with the ID "general-preview-video" and plays it.
+     * It also attempts to request fullscreen mode using the appropriate method for the browser.
+     * If the fullscreen request fails, an error is logged to the console.
+     * 
+     * @returns {void}
+     */
     playGeneralVideo(): void {
-        console.log(`Play General Preview`);
         const generalVideoElement = document.getElementById(
             "general-preview-video"
         ) as HTMLVideoElement;
@@ -245,8 +320,15 @@ onFullScreenChange(event: any): void {
         }
     }
 
+    /**
+     * Starts the playback of the general preview video.
+     * 
+     * This method selects the video element with the ID "general-preview-video"
+     * and initiates its playback if the element is found.
+     * 
+     * @returns {void}
+     */
     startGeneralPreview(): void {
-        console.log(`Start General Preview`);
         const generalVideoElement = document.getElementById(
             "general-preview-video"
         ) as HTMLVideoElement;
@@ -255,8 +337,12 @@ onFullScreenChange(event: any): void {
         }
     }
 
+    /**
+     * Stops the general preview video by pausing it and resetting its current time to 0.
+     * This function targets the video element with the ID "general-preview-video".
+     * If the video element is found, it will be paused and its playback position will be reset.
+     */
     stopGeneralPreview(): void {
-        console.log(`Stop General Preview`);
         const generalVideoElement = document.getElementById(
             "general-preview-video"
         ) as HTMLVideoElement;
@@ -266,7 +352,7 @@ onFullScreenChange(event: any): void {
         }
     }
 
-    ngOnDestroy(): void {
-        // VideoPlayer-Komponente kümmert sich um die Entsorgung des Players
-    }
+    // ngOnDestroy(): void {
+    //     // VideoPlayer-Komponente kümmert sich um die Entsorgung des Players
+    // }
 }
