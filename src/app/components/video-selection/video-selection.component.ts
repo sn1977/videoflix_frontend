@@ -7,7 +7,7 @@ import {
     OnDestroy,
     Renderer2,
     ViewEncapsulation,
-    HostListener
+    HostListener,
 } from "@angular/core";
 import { HeaderComponent } from "../header/header.component";
 import { TranslateModule } from "@ngx-translate/core";
@@ -49,7 +49,7 @@ export class VideoSelectionComponent
     /**
      * A reference to the fullscreen container element in the template.
      * This element is used to display video content in fullscreen mode.
-     * 
+     *
      * @type {ElementRef<HTMLDivElement>}
      */
     @ViewChild("fullscreenContainer")
@@ -69,7 +69,7 @@ export class VideoSelectionComponent
     /**
      * Lifecycle hook that is called after data-bound properties of a directive are initialized.
      * Initializes the component by loading the categories.
-     * 
+     *
      * @see https://angular.io/api/core/OnInit#ngOnInit
      */
     ngOnInit(): void {
@@ -79,10 +79,10 @@ export class VideoSelectionComponent
     /**
      * Lifecycle hook that is called after a component's view has been fully initialized.
      * This method is used to set video options if a video has been selected.
-     * 
+     *
      * @remarks
      * This method is part of Angular's component lifecycle hooks.
-     * 
+     *
      * @see {@link https://angular.io/guide/lifecycle-hooks#afterviewinit | ngAfterViewInit}
      */
     ngAfterViewInit(): void {
@@ -123,16 +123,13 @@ export class VideoSelectionComponent
 
     /**
      * Separates the "PreviewVideo" category from the list of categories.
-     * 
+     *
      * This method finds the category with the name "PreviewVideo" and assigns it to `this.previewCategory`.
      * All other categories are assigned to `this.otherCategories`.
-     * 
+     *
      * @returns {void}
      */
     separatePreviewCategory(): void {
-        console.log(
-            "separatePreviewCategory: Trennen der PreviewVideo-Kategorie..."
-        );
         this.previewCategory =
             this.categories.find(
                 (category) => category.name === "PreviewVideo"
@@ -170,62 +167,66 @@ export class VideoSelectionComponent
         };
     }
 
-  /**
-   * Plays the selected video by setting it as the current video and configuring video options.
-   * Requests fullscreen mode for the video container with a minimal delay to ensure rendering.
-   *
-   * @param video - The video object to be played.
-   * @returns void
-   */
-  playVideo(video: Video): void {
-    this.selectedVideo = video;
-    this.setVideoOptions(video.video_file);
+    /**
+     * Plays the selected video by setting it as the current video and configuring video options.
+     * Requests fullscreen mode for the video container with a minimal delay to ensure rendering.
+     *
+     * @param video - The video object to be played.
+     * @returns void
+     */
+    playVideo(video: Video): void {
+        this.selectedVideo = video;
+        this.setVideoOptions(video.video_file);
 
-    // Verzögerung einbauen, um sicherzustellen, dass der fullscreenContainer gerendert wurde
-    setTimeout(() => {
-        if (this.fullscreenContainer && this.fullscreenContainer.nativeElement) {
-            const containerElement = this.fullscreenContainer.nativeElement;
+        // Verzögerung einbauen, um sicherzustellen, dass der fullscreenContainer gerendert wurde
+        setTimeout(() => {
+            if (
+                this.fullscreenContainer &&
+                this.fullscreenContainer.nativeElement
+            ) {
+                const containerElement = this.fullscreenContainer.nativeElement;
 
-            // Vollbild anfordern
-            const promise =
-                containerElement.requestFullscreen?.() ||
-                (containerElement as any).webkitRequestFullscreen?.() ||
-                (containerElement as any).mozRequestFullScreen?.() ||
-                (containerElement as any).msRequestFullscreen?.();
+                // Vollbild anfordern
+                const promise =
+                    containerElement.requestFullscreen?.() ||
+                    (containerElement as any).webkitRequestFullscreen?.() ||
+                    (containerElement as any).mozRequestFullScreen?.() ||
+                    (containerElement as any).msRequestFullscreen?.();
 
-            if (promise) {
-                promise.catch((err: any) => {
-                    console.error("Fullscreen request failed:", err);
-                });
+                if (promise) {
+                    promise.catch((err: any) => {
+                        console.error("Fullscreen request failed:", err);
+                    });
+                }
             }
-        }
-    }, 0); // Minimaler Delay
-}
-
-// 1. HostListener hinzufügen, um Fullscreen-Änderungen zu überwachen
-@HostListener('document:fullscreenchange', ['$event'])
-@HostListener('document:webkitfullscreenchange', ['$event'])
-@HostListener('document:mozfullscreenchange', ['$event'])
-@HostListener('document:MSFullscreenChange', ['$event'])
-onFullScreenChange(event: any): void {
-    const isFullscreen = document.fullscreenElement ||
-                         (document as any).webkitFullscreenElement ||
-                         (document as any).mozFullScreenElement ||
-                         (document as any).msFullscreenElement;
-       
-    if (!isFullscreen) {
-        this.closeVideo();
+        }, 0); // Minimaler Delay
     }
-}
+
+    // 1. HostListener hinzufügen, um Fullscreen-Änderungen zu überwachen
+    @HostListener("document:fullscreenchange", ["$event"])
+    @HostListener("document:webkitfullscreenchange", ["$event"])
+    @HostListener("document:mozfullscreenchange", ["$event"])
+    @HostListener("document:MSFullscreenChange", ["$event"])
+    onFullScreenChange(event: any): void {
+        const isFullscreen =
+            document.fullscreenElement ||
+            (document as any).webkitFullscreenElement ||
+            (document as any).mozFullScreenElement ||
+            (document as any).msFullscreenElement;
+
+        if (!isFullscreen) {
+            this.closeVideo();
+        }
+    }
 
     /**
      * Closes the currently selected video and exits fullscreen mode if active.
-     * 
+     *
      * This method performs the following actions:
      * 1. Exits fullscreen mode if the document is currently in fullscreen.
      * 2. Sets the selected video and video options to null.
      * 3. Removes the "active" class from the fullscreen container element if it exists.
-     * 
+     *
      * @returns {void}
      */
     closeVideo(): void {
@@ -274,7 +275,7 @@ onFullScreenChange(event: any): void {
 
     /**
      * Stops the preview of a video by pausing it and resetting its current time to 0.
-     * 
+     *
      * @param videoId - The unique identifier of the video to stop the preview for.
      * @returns void
      */
@@ -290,11 +291,11 @@ onFullScreenChange(event: any): void {
 
     /**
      * Plays the general preview video and attempts to request fullscreen mode.
-     * 
+     *
      * This method selects the video element with the ID "general-preview-video" and plays it.
      * It also attempts to request fullscreen mode using the appropriate method for the browser.
      * If the fullscreen request fails, an error is logged to the console.
-     * 
+     *
      * @returns {void}
      */
     playGeneralVideo(): void {
@@ -322,10 +323,10 @@ onFullScreenChange(event: any): void {
 
     /**
      * Starts the playback of the general preview video.
-     * 
+     *
      * This method selects the video element with the ID "general-preview-video"
      * and initiates its playback if the element is found.
-     * 
+     *
      * @returns {void}
      */
     startGeneralPreview(): void {
