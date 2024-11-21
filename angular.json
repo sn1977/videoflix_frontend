@@ -38,24 +38,34 @@
                         "scripts": [
                             "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
                         ],
-                        "server": "src/main.server.ts",
-                        "prerender": true,
-                        "ssr": {
-                            "entry": "server.ts"
-                        }
+                        "allowedCommonJsDependencies": [
+                            "video.js",
+                            "@videojs/xhr",
+                            "mux.js",
+                            "@xmldom/xmldom",
+                            "@babel/runtime/helpers/extends",
+                            "videojs-vtt.js",
+                            "mpd-parser"
+                        ]
                     },
                     "configurations": {
                         "production": {
+                            "fileReplacements": [
+                                {
+                                    "replace": "src/environments/environment.ts",
+                                    "with": "src/environments/environment.prod.ts"
+                                }
+                            ],
                             "budgets": [
                                 {
                                     "type": "initial",
-                                    "maximumWarning": "500kB",
-                                    "maximumError": "1MB"
+                                    "maximumWarning": "2mb",
+                                    "maximumError": "3mb"
                                 },
                                 {
                                     "type": "anyComponentStyle",
-                                    "maximumWarning": "2kB",
-                                    "maximumError": "4kB"
+                                    "maximumWarning": "50kb",
+                                    "maximumError": "100kB"
                                 }
                             ],
                             "outputHashing": "all"

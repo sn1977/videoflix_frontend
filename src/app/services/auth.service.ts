@@ -22,12 +22,13 @@ export class AuthService {
         emailOrUsername: string,
         password: string
     ) {
-        const url = `${environment.apiUrl}/login/`; // Verwenden Sie Template-Strings für Klarheit
+        const url = `${environment.apiUrl}login/`; // Verwenden Sie Template-Strings für Klarheit
         const body = {
             email_or_username: emailOrUsername,
             password: password,
         };
-        return lastValueFrom(this.http.post(url, body));
+        // return lastValueFrom(this.http.post(url, body));
+        return lastValueFrom(this.http.post(url, body, { withCredentials: true }));
     }
 
     /**
@@ -47,7 +48,7 @@ export class AuthService {
         email: string,
         password: string
     ) {
-        const url = `${environment.apiUrl}/register/`;
+        const url = `${environment.apiUrl}register/`;
         const body = {
             first_name: firstname,
             last_name: lastname,
@@ -68,7 +69,7 @@ export class AuthService {
      * @returns An Observable of the HTTP GET request.
      */
     public activateAccount(uidb64: string, token: string) {
-        const url = `${environment.apiUrl}/activate/${uidb64}/${token}/`;
+        const url = `${environment.apiUrl}activate/${uidb64}/${token}/`;
         return this.http.get(url);
     }
 
@@ -79,7 +80,7 @@ export class AuthService {
      * @returns An Observable of the HTTP response from the password reset request.
      */
     public requestPasswordReset(email: string) {
-        const url = `${environment.apiUrl}/password-reset/`;
+        const url = `${environment.apiUrl}password-reset/`;
         const body = { email: email };
         return this.http.post(url, body);
     }
@@ -93,7 +94,7 @@ export class AuthService {
      * @returns An Observable of the HTTP response.
      */
     public resetPassword(uidb64: string, token: string, password: string) {
-        const url = `${environment.apiUrl}/password-reset-confirm/${uidb64}/${token}/`;
+        const url = `${environment.apiUrl}password-reset-confirm/${uidb64}/${token}/`;
         const body = { password: password };
         return this.http.post(url, body);
     }

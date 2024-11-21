@@ -51,7 +51,7 @@ export class VideoService {
      */
     getCategories(): Observable<Category[]> {
         if (typeof window !== "undefined" && localStorage.getItem("token")) {
-            const url = environment.apiUrl + "/categories/";
+            const url = environment.apiUrl + "categories/";
             return this.http
                 .get<Category[]>(url, { headers: this.getHeaders() })
                 .pipe(
